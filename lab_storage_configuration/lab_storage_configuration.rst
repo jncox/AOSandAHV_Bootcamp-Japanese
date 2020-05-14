@@ -54,7 +54,6 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
    - Select **Compression**
    - **Delay (In Minutes)** - 0
 
-
    .. note::
 
      他の設定はデフォルト値のままにします。
