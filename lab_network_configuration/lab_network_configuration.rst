@@ -22,7 +22,7 @@ VMネットワークはPrism（またはオプションでCLI/REST）を介し�
 
 AHVでは、IPアドレス管理（IPAM）サービスを使用してVMにIPアドレスを自動的に提供するために、DHCPサーバを設定することもできます。つまり、ネットワーク用に別途DHCPサーバを設定する必要はありません。これにより、ネットワーク管理が容易になります。
 
-AHVネットワークの詳細については `以下 <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_ を参照ください。 
+AHVネットワークの詳細については `以下 <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_ を参照ください。
 
 仮想ネットワーク
 ................
@@ -74,7 +74,7 @@ Prism Elementに接続し、ユーザーVMインタフェース用のネット�
 #. 次のフィールドに入力し、 **Save** をクリックします。
 
    - **Name** - *Initials*-Network
-   - **VLAN ID** - A value (< 4096) other than your **Primary** or **Secondary** network VLANs
+   - **VLAN ID** - **Primary** と **Secondary** ネットワークで使用していないIDかつ、4096以下のVLAN IDを指定します。
    - Do not select **Enable IP Address Management**
 
    最終的には以下の画像の様になります。
@@ -91,7 +91,7 @@ IPAMを有効にした、別のネットワークを作成します。
 #. 次のフィールドに入力し、 **Save** をクリックします。
 
    - **Name** - *Initials*-Network_IPAM
-   - **VLAN ID** - A value (< 4096) other than your **Primary** or **Secondary** network VLANs
+   - **VLAN ID** - **Primary** と **Secondary** ネットワークで使用していないIDかつ、4096以下のVLAN IDを指定します。
    - Select **Enable IP Address Management**
    - **Network IP Address / Prefix Length** - 10.0.0.0/24
    - **Gateway** - 10.0.0.1
