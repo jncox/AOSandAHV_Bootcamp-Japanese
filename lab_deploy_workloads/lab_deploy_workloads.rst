@@ -51,7 +51,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
        *これは、ブート/インストール用のImage ServiceからWindows Server ISOをマウントします。*
 
-   - Select **+ Add New Disk**
+   - **+ Add New Disk** をクリックします。
        - **Type** - DISK
        - **Operation** - Allocate on Storage Container
        - **Storage Container** - Default Container
@@ -60,7 +60,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
        *選択したStorage Containerに30GiBのvDiskを作成します*
 
-   - Select **+ Add New Disk**
+   - **+ Add New Disk** をクリックします。
        - **Type** - CDROM
        - **Operation** - Clone from Image Service
        - **Image** - Nutanix VirtIO ISO
@@ -68,7 +68,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
        - **Boot Configuration**
        - Leave the default selected **Legacy Boot**
 
-   - Select **Add New NIC**
+   - **Add New NIC** をクリックします。
        - **VLAN Name** - Primary
        - Select **Add**
 
@@ -78,7 +78,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
        .. note::
 
-         以下のURLにサポートされているOSが載っています
+         以下のURLにサポートOSが掲載されています。
 
          http://my.nutanix.com/uefi_boot_support
 
@@ -92,8 +92,6 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
    .. note::
      選択肢が表示されたら、**Datacenter with GUI** と **Custom** インストールを選択してください。
-
-#. Click **Load Driver** and navigate to the CD where the Nutanix VirtIO is mounted.
 
 #. **Load Driver** をクリックし、Nutanix VirtIO がマウントされているドライブに移動します。
 
