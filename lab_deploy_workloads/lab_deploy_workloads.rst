@@ -1,43 +1,43 @@
 .. _lab_deploy_workloads:
 
 -------------------------
-Deploying Workloads Lab
+ワークロードの構成
 -------------------------
 
-Overview
+概要
 ++++++++
 
-In addition to storage, VM creation, management, and monitoring can all be performed for Nutanix AHV directly through Prism.
+ストレージに加えて、VMの作成、管理、モニタリングはNutanix AHVに対してすべてPrismを介して行うことができます。
 
 .. note::
 
-   Prism also offers native support for VM CRUD operations for Nutanix clusters running ESXi when the vCenter has been registered in Prism.
+  また、PrismではvCenterを登録することで、ESXiを実行しているNutanixクラスタのVM CRUD操作をネイティブにサポートしています
 
-Deploying Workloads
+ワークロードの作成
 +++++++++++++++++++
 
-In the following exercise we'll walk through creating VMs from source media and from existing disk images.
+次の演習では、ソースメディアからのVMの作成と既存のディスクイメージからのVMの作成について説明します。
 
-Creating a Windows VM
+Windows VMの作成
 .....................
 
-In this exercise you will create a Windows Server VM from a Windows installation ISO image.
+この演習では、Windows インストール ISO イメージから Windows Server VM を作成します。
 
-AHV provides an **Image Service** feature allows you to build a store of imported files that you can use to create a CD-ROM from an ISO image or an operating system Disk from a disk image when creating a VM. The Image Service supports raw, vhd, vhdx, vmdk, vdi, iso, and qcow2 disk formats.
+AHV は **Image Service** を提供しており、インポートされたファイルのストアを構築することができます。Image serviceは、raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2のディスクフォーマットをサポートしています。
 
 .. note::
 
-   You can explore the available images and upload additional images under :fa:`cog` **> Image Configuration** in Prism Element.
+   Prism Element の : fa:`cog` **> Image Configuration** で利用可能なイメージ確認したり、追加のイメージをアップロードしたりできます。
 
-In order to provide high performance IO to VMs, AHV requires the installation of paravirtualized drivers into the guest (similar to VMware Tools). For Windows guests specifically, these drivers must be loaded during installation in order for the VM's disk to be accessible by the Windows installer.
+VM にハイパフォーマンスI/Oを提供するためにはAHV はゲストに準仮想化ドライバをインストールする必要があります（VMware Tools に似ています）。特に Windows ゲストの場合、Windows インストーラで VM のディスクにアクセスできるようにするためにはインストール中にこれらのドライバを読み込む必要があります。
 
-Nutanix validates and distributes these drivers via http://portal.nutanix.com. The ISO image containing the drivers has already been uploaded to the Image Service.
+Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を通して配布しています。また、本環境ではドライバを含むISOイメージもImage Serviceにアップロードされています。
 
-#. In **Prism Element > VM > Table**, click **+ Create VM**.
+#. **Prism Element > VM > Table** と進み **+ Create VM** をクリックします。
 
-#. Fill out the following fields and click **Save**:
+#. 次のフィールドに入力し、 **Save** をクリックします。
 
-    Leave other settings at their default values.
+    他の設定はデフォルト値のままにします。
 
    - **Name** - *Initials*-Windows_VM
    - **Description** - (Optional) Description for your VM.
@@ -49,7 +49,7 @@ Nutanix validates and distributes these drivers via http://portal.nutanix.com. T
        - **Image** - Windows2016.ISO
        - Select **Update**
 
-       *This will mount the Windows Server ISO from the Image Service for boot/installation*
+       *これは、ブート/インストール用のImage ServiceからWindows Server ISOをマウントします。*
 
    - Select **+ Add New Disk**
        - **Type** - DISK
@@ -58,7 +58,7 @@ Nutanix validates and distributes these drivers via http://portal.nutanix.com. T
        - **Size (GiB)** - 30 GiB
        - Select **Add**
 
-       *This will create a 30GiB vDisk on the selected Storage Container*
+       *選択したStorage Containerに30GiBのvDiskを作成します*
 
    - Select **+ Add New Disk**
        - **Type** - CDROM
@@ -72,36 +72,36 @@ Nutanix validates and distributes these drivers via http://portal.nutanix.com. T
        - **VLAN Name** - Primary
        - Select **Add**
 
-       *This will add a single virtual NIC to the VM on the selected Virtual Network*
+       *選択した仮想ネットワーク上のVMに1つの仮想NICを追加します*
 
-#. Click **Save** to create the VM.
+#. **Save** をクリックし、仮想マシンを作成します。
 
        .. note::
 
-         At the following URL you can find the supported Operating Systems
+         以下のURLにサポートされているOSが載っています
 
          http://my.nutanix.com/uefi_boot_support
 
-#. Select the VM, then click **Power On** from the list of action links (below the table) to turn on the VM.
+#. VM を選択し、テーブルの下にある **Power On** をクリックして VM をオンにします。
 
    .. figure:: images/vm_power_on.png
 
-#. Select the VM, then click **Launch Console** from the **Actions** drop-down menu to access an HTML5 console to interact with the VM.
+#. VM を選択し、**Actions** ドロップダウンメニューから **Launch Console** をクリックして、HTML5 コンソールにアクセスします。
 
-#. Progress through the standard install questions until you reach the Windows install location.
+#. Windowsのインストールを開始するまえに、基本的なインストール方法を確認します。
 
    .. note::
-     Choose **Datacenter with GUI** and **Custom** installation when presented with the choice.
+     選択肢が表示されたら、**Datacenter with GUI** と **Custom** インストールを選択してください。
 
 #. Click **Load Driver** and navigate to the CD where the Nutanix VirtIO is mounted.
 
-#. Browse the CD, and select the directory that corresponds to the Windows OS being installed.
+#. **Load Driver**をクリックし、Nutanix VirtIOがマウントされているドライブに移動します。
 
    .. figure:: images/deploy_workloads_05.png
 
    .. figure:: images/deploy_workloads_06.png
 
-#. Select the three Nutanix drivers displayed (Press and hold the Ctrl key and select all three drivers):
+#. 表示された3つのNutanixドライバを選択します（Ctrlキーを押しながら3つのドライバをすべてクリックします）
 
    - Balloon
    - Ethernet adapter
@@ -109,38 +109,39 @@ Nutanix validates and distributes these drivers via http://portal.nutanix.com. T
 
    .. figure:: images/deploy_workloads_07.png
 
-#. Click **Next**.
+#. **Next** をクリックします。
 
-   After the drivers are loaded, the disk created in Step 2 appears as an installation target.
+   ドライバが読み込まれると、手順2で作成したディスクがインストール対象として表示されます。
 
-#. Select that disk and continue with the normal install process.
+#. そのディスクを選択して、通常のインストールプロセスを行います。
 
-#. After the installation completes, if desired, the Windows install and the VirtIO ISOs can be unmounted from within Windows, and the CD-ROMs can be removed from the VM by selecting the VM in the table, clicking **Update** from the list of action links, and removing the CD-ROM disks (VM must be powered off).
+#. インストールが完了した後、必要に応じて 仮想ドライブを削除することができます。
+  仮想マシンの電源オフにした後に、**Update**をクリックし、マウントしているISOをアンマウント後、仮想ドライブを削除する流れとなります。
 
    .. note::
 
-     For ESXi clusters, if a VM is created via VMware vSphere, it appears in the Prism VMs list. Alternatively, if a VM is created via Prism, it appears in the VMware vSphere UI. No manual syncing or waiting is required.
+     ESXi クラスタの場合、VMware vSphere で VM が作成されると、VMがPrism VMs リストに表示されます。Prism で VM が作成された場合は、VMware vSphere UI に表示されます。手動での同期や待機は必要ありません。
 
      .. figure:: images/deploy_workloads_08.png
 
-#. Following OS installation you can complete the **Nutanix Guest Tools (NGT)** installation by selecting the VM in Prism and clicking **Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools**, and clicking **Submit**.
+#. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit**をクリックすることで、**Nutanix Guest Tools (NGT)**のインストール準備をします。
 
-   This will use the virtual CD-ROM device to mount the NGT installation ISO to the VM. NGT includes the previously installed VirtIO drivers, as well as services to support **Self-Service File Restore (SSR)** and **Application Consistent (VSS) snapshots**.
+  これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、**Self-Service File Restore (SSR)**および**Application Consistent (VSS) snapshots**をサポートするサービスが含まれています
 
     .. figure:: images/deploy_workloads_nutanix_guest_tools.png
 
-#. Return to the VM console to complete the NGT installation by clicking on the Nutanix Guest Tools CD.
+#. VMコンソールに戻り、Nutanix Guest Tools の CDドライブをクリックしてNGTのインストールを完了させます。
 
     .. figure:: images/deploy_workloads_ngt_mounted.png
 
-Creating a Linux VM
+Linux VMの作成
 ...................
 
-In this exercise you will create a CentOS VM from an existing, pre-installed disk image in the Image Service. It is common in many environments to have "template" style images of pre-installed operating systems. Similar to the previous exercise, the disk image has already been uploaded to the Image Service.
+このエクササイズではImage ServiceにプリインストールされているディスクイメージからCentOS VMを作成します。 一般的にはテンプレートスタイルのディスクイメージがプリインストールされています。 また、この演習で使うインストールイメージもImage Serviceにあります。
 
-#. In **Prism Element > VM > Table**, click **+ Create VM**.
+#. **Prism Element > VM > Table** と進み、**+ Create VM** をクリックします。
 
-#. Fill out the following fields and click **Save**:
+#. 以下のフィールドを入力し、 **Save** をクリックします。
 
    - **Name** - *Initials*-Linux_VM
    - **Description** - (Optional) Description for your VM.
@@ -156,7 +157,7 @@ In this exercise you will create a CentOS VM from an existing, pre-installed dis
       - **Boot Configuration**
       - Leave the default selected **Legacy Boot**
 
-    *This will create a thin clone of the existing CentOS disk image*
+    *既存のCentOSディスクイメージのシン・クローンを作成します。*
 
    - Select **Add New NIC**
       - **VLAN Name** - Primary
@@ -164,12 +165,12 @@ In this exercise you will create a CentOS VM from an existing, pre-installed dis
 
    .. figure:: images/deploy_workloads_03.png
 
-#. Click **Save** to create the VM.
+#. **Save** をクリックしVMを作成します。
 
-#. **Launch the console** to see the VM being started.
+#. コンソールを起動して、VMが起動しているのを確認します
 
-Takeaways
+まとめ
 +++++++++
 
-- In this lab you saw how simple it is to deploy a Windows VM and a Linux VM.
-- The Image Configuration tool allows you to have a catalog of available images to be used in VM deployments as needed and covering a broad format support which includes qcow, qcow2, vmdk, VHD, VHDx, RAW, and ISO.
+- このラボでは、Windows VM と Linux VM の構築がいかに簡単かを見てきました。
+- Image Configurationツールを利用するのは、VMの構築で必要なインストールイメージのカタログとして使用します。qcow、qcow2、vmdk、VHD、VHDx、RAW、ISO を含む様々なフォーマットをサポートします。
