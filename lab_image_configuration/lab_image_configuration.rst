@@ -52,8 +52,9 @@ Nutanixのイメージ管理サービスは、ISOファイルや作成したイ�
 - **Image Type** - ISO
 - **Image Description** - (Optional) Add a description
 
-.. note::
+まとめ
++++++++++
 
-イメージは、クラスタの Prism Element から直接アップロードすることもできます。
-このツールは、VM ディスクイメージを AHV が理解できる形式に変換することもできます。
-Imageサービスは、raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2ディスクフォーマットをサポートしています。
+イメージはクラスタの Prism Element から直接アップロードすることも可能です。
+このツールは、VM ディスクイメージを AHV が理解できる形式に変換する機能を持っています。
+raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2ディスクフォーマットをサポートしています。
