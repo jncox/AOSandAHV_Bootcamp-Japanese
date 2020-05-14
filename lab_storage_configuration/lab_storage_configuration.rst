@@ -24,7 +24,7 @@ DSF内の2つの主なストレージ構造は、**Storage Pool** と **Storage 
 **Storage Pool** は、与えられたNutanixクラスタ内のすべての物理ディスクの集合体です。
 クラスタはデータの分配を管理するため、追加のストレージプール(従来のストレージ環境のLUNのようなもの)の設定は必要ありません。
 新しいノードがクラスタに追加されると、ディスクは自動的にプールに追加され、クラスタはバックグラウンドタスクとして新しいディスクにデータの再配置を開始します。
-`<https://nutanixbible.com/#anchor-book-of-acropolis-disk-balancing>`_
+`バイブル <https://nutanixbible.com/#anchor-book-of-acropolis-disk-balancing>`_
 
 **Storage Containers** は、VMまたはvDisksのグループに対してストレージポリシーを構成することができるソフトウェアで定義された論理的な構造になっています。 次のエクササイズでは、Prism内でNutanixストレージを作成して構成するプロセスを説明します。
 
