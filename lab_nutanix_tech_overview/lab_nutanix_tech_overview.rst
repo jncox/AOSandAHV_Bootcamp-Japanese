@@ -1,13 +1,13 @@
 .. _lab_nutanix_technology_overview:
 
 ---------------------------------
-Nutanix Tech ラボ
+Nutanix Tech lab
 ---------------------------------
 
 概要
 ++++++++
 
-このラボでは、Prism Element UI を紹介し、その全容と使い方を理解します。
+このラボでは、Prism Element UI を紹介し、その内容と使い方を理解します。
 
 Prism Element
 +++++++++++++
