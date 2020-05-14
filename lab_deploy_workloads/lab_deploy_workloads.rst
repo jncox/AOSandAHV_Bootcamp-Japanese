@@ -95,7 +95,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
 #. Click **Load Driver** and navigate to the CD where the Nutanix VirtIO is mounted.
 
-#. **Load Driver**をクリックし、Nutanix VirtIOがマウントされているドライブに移動します。
+#. **Load Driver** をクリックし、Nutanix VirtIO がマウントされているドライブに移動します。
 
    .. figure:: images/deploy_workloads_05.png
 
@@ -124,7 +124,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
      .. figure:: images/deploy_workloads_08.png
 
-#. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit**をクリックすることで、**Nutanix Guest Tools (NGT)**のインストール準備をします。
+#. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit**をクリックすることで、**Nutanix Guest Tools (NGT)** のインストール準備をします。
 
   これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、**Self-Service File Restore (SSR)**および**Application Consistent (VSS) snapshots**をサポートするサービスが含まれています
 
