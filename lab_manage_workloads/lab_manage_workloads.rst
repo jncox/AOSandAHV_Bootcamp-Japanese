@@ -1,13 +1,13 @@
 .. _lab_manage_workloads:
 
 ------------------------
-ワークロード管理Lab
+ワークロード管理
 ------------------------
 
 概要
 ++++++++
 
-いくつかの VM がデプロイされたので、AHV を使った VM 管理タスク (電源管理、検索、クローン、マイグレーション) を楽しみながら探ってみましょう
+いくつかの VM がデプロイされたので、AHV を使った VM 管理タスク (電源管理、検索、クローン、マイグレーション) を操作してみましょう。
 
 ワークロードの管理
 +++++++++++++++++++
@@ -17,16 +17,17 @@
 
 VMの電源操作とコンソールアクセスについて説明します。
 
-#.**Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン **Initials*-**Linux_VM** を見つけます。
+#. **Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン **Initials*-**Linux_VM** を見つけます。
 
    .. note::
+
    その VM の Power State 列には赤いドットが表示され、VM が電源オフであることを示していることに注意してください。
 
 #. その仮想マシンを選択して **Power On** をクリックします。
 
 #. その仮想マシンを選択して **Launch Console** をクリックします。
 
-   コンソールウィンドウには 4つのアクションが用意されています。 **Mount ISO, CTRL-ALT-DEL, Screen Capture, Power** です。
+   コンソールウィンドウには 4つのアクションが用意されています。 **Mount ISO, CTRL-ALT-DEL, Screen Capture, 電源操作** です。
 
    .. figure:: images/manage_workloads_01_a.png
 
@@ -125,7 +126,7 @@ AHVは、**Acropolis Dynamic Scheduler** サービスを使用してVMのイン�
 
   Nutanix AHVソリューションの利点は、CPU/メモリの輻輳回避だけでなく、ストレージ性能に基づいてVMの配置を決定できることです。
 
-**Acropolis Dynamic Scheduler** について追加情報は`here <https://nutanixbible.com/#anchor-book-of-acropolis-dynamic-scheduler>`_ を参照してください。
+**Acropolis Dynamic Scheduler** について追加情報は `here <https://nutanixbible.com/#anchor-book-of-acropolis-dynamic-scheduler>`_ を参照してください。
 
 Prism Search
 ............
@@ -155,4 +156,4 @@ Prismの検索機能を使用すると、Prism Centralで問題を特定した�
 +++++++++
 
 - このラボでは、クラスタ内のVMを管理するためのツールとアクションのコンプリートセットをAHVがどのように提供しているかを体験しました。
-- ESXiクラスタであっても、vCenterをPrismに登録することで、基本的なVM管理タスクの一部をPrismから実行できるようにできます。
+- ESXiクラスタにおいてはvCenterをPrismに登録することで、基本的なVM管理タスクの一部をPrismから実行できるようにできます。
