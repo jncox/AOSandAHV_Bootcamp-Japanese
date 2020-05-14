@@ -2,32 +2,32 @@
 
 
 -------------------------
-Lab - Image Configuration
+イメージ管理
 -------------------------
 
-Overview
+概要
 ++++++++
 
-Learn about basic Image Management
+イメージ管理について基本的なことを学びます。
 
-Image Configuration
+イメージ管理
 +++++++++++++++++++
 
-Nutanix's Image Service is where you can store your build ISOs, as well as Disk Images you create (similar to VMware Templates).
+Nutanixのイメージ管理サービスは、ISOファイルや作成したイメージディスクを保存する場所です。(VMwareのテンプレートに似ています。)
 
-We will upload CentOS ISO to use for deploying VMs.
+仮想マシンのデプロイに使用するCentOSのISOファイルをアップロードしてみましょう。
 
-In **Prism Central > Explore**, click **Images**.
+**Prism Central > Explore** と進み **Images** をクリックします。
 
-Next click **Add Image**, and click **URL**.
+次に、**Add Image** と進み、**URL** をクリックします。
 
-Fill out the following fields and click **Upload File**:
+以下のフィールドに入力し、**Upload File** をクリックします。
 
 - **Enter Image URL** - http://10.20.134.222/images/CentOS-7-x86_64-Minimal-1804.iso
 
 .. figure:: images/deploy_workloads_01.png
 
-Next, fill out the following fields and click **Save**:
+以下のフィールドに入力し、**Upload File** をクリックします。
 
 - **Image Name** - CentOS7-*initials*
 - **Image Type** - ISO
@@ -36,18 +36,17 @@ Next, fill out the following fields and click **Save**:
 .. figure:: images/deploy_workloads_02.png
 
 .. note::
-  Image management in Prism Central allows you to upload images that can be used to deploy workloads in any of the clusters registered to that Prism Central instance.
+  Prism Centralのイメージ管理では、そのPrism Centralインスタンスに登録されているクラスタにおいて使用できるようにイメージをアップロードすることができます
 
+続いて、Windows 2012のISOをアップロードします。 もし既にアップロードされている場合は不要です。
 
-Now we will upload Windows 2012 ISO to use for deploying VMs, **if the cluster doesn't already have this image available**.
+**Add Image** と進み **URL** をクリックします。
 
-Click **Add Image**, and click **URL**.
-
-Fill out the following fields and click **Upload File**:
+以下のフィールドに入力し、**Upload File** をクリックします。
 
 - **Enter Image URL** - http://10.20.134.222/images/server_2012_r2_vl_x64_dvd_3319595.iso
 
-Next, fill out the following fields and click **Save**:
+以下のフィールドに入力し、**Upload File** をクリックします。
 
 - **Image Name** - Windows2012-*initials*
 - **Image Type** - ISO
@@ -55,7 +54,6 @@ Next, fill out the following fields and click **Save**:
 
 .. note::
 
-  Image management in Prism Central allows you to upload images that can be used to deploy workloads in any of the clusters registered to that Prism Central instance.
-  An image can also be uploaded directly from a cluster's Prism Element.
-  This tool can also convert VM disk images to formats that AHV can understand.
-  The image service supports raw, vhd, vhdx, vmdk, vdi, iso, and qcow2 disk formats.
+イメージは、クラスタの Prism Element から直接アップロードすることもできます。
+このツールは、VM ディスクイメージを AHV が理解できる形式に変換することもできます。
+Imageサービスは、raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2ディスクフォーマットをサポートしています。
