@@ -29,7 +29,7 @@ DSF内の2つの主なストレージ構造は、**Storage Pool** と **Storage 
 
 .. note::
 
-   vDisks、エクステント、エクステントグループなどの追加のDSF構成については、Nutanixバイブル `Nutanixバイブル <https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`_ を参照してください。
+   vDisks、エクステント、エクステントグループなどの追加のDSF構成については、`Nutanix バイブル <https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`_ を参照してください。
 
 このラボでは、Prism Elementsを使用して基本的なストレージコンテナのセットアップを行います
 
