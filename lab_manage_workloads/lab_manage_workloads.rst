@@ -143,7 +143,7 @@ Prismの検索機能を使用すると、Prism Centralで問題を特定した�
 - powered on
 - powered on cpu = 8
 
-#. **Prism Central > ** :fa:`search` を使って検索します
+#. **Prism Central >** :fa:`search` を使って検索します
 
 - Note the result types: Entity, Alerts, and Help.
 - Click the star icon to save a search.
