@@ -114,7 +114,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 #. そのディスクを選択して、通常のインストールプロセスを行います。
 
 #. インストールが完了した後、必要に応じて 仮想ドライブを削除することができます。
-  仮想マシンの電源オフにした後に、**Update**をクリックし、マウントしているISOをアンマウント後、仮想ドライブを削除する流れとなります。
+  仮想マシンの電源オフにした後に、**Update** をクリックし、マウントしているISOをアンマウント後、仮想ドライブを削除する流れとなります。
 
    .. note::
 
@@ -122,7 +122,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
      .. figure:: images/deploy_workloads_08.png
 
-#. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit**をクリックすることで、**Nutanix Guest Tools (NGT)** のインストール準備をします。
+#. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit** をクリックすることで、**Nutanix Guest Tools (NGT)** のインストール準備をします。
 
   これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、**Self-Service File Restore (SSR)**および**Application Consistent (VSS) snapshots**をサポートするサービスが含まれています
 
@@ -147,7 +147,7 @@ Linux VMの作成
    - **Number of Cores per vCPU** - 1
    - **Memory** - 2 GiB
 
-   - Select **+ Add New Disk**
+   - **+ Add New Disk** をクリックします。
       - **Type** - DISK
       - **Operation** - Clone from Image Service
       - **Image** - CentOS7.qcow2
@@ -157,7 +157,7 @@ Linux VMの作成
 
     *既存のCentOSディスクイメージのシン・クローンを作成します。*
 
-   - Select **Add New NIC**
+   - **Add New NIC** をクリックします。
       - **VLAN Name** - Primary
       - Select **Add**
 
