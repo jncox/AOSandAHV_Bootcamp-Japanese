@@ -17,7 +17,7 @@
 
 VMの電源操作とコンソールアクセスについて説明します。
 
-#. **Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン **Initials*- **Linux_VM** を見つけます。
+#. **Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン *Initials*- **Linux_VM** を見つけます。
 
    .. note::
 
