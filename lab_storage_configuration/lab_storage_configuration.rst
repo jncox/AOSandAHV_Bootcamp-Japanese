@@ -63,7 +63,7 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
 
    AHVでは、ハイパーバイザーは、使用中の各vDiskに対してDSFへの個別のiSCSI接続を作成します。
    ESXi 環境では、各 **Storage Container** は、NFS データストアとしてハイパーバイザーに自動的にマウントされます。
-   同様に、Hyper-V環境では、各**Storage Container**はSMBデータストアとして表示されます。
+   同様に、Hyper-V環境では、各 **Storage Container** はSMBデータストアとして表示されます。
 
    .. note::
 
