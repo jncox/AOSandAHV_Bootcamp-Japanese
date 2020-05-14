@@ -21,8 +21,6 @@ HCI分野でのパイオニアとして、DSFはエンタープライズデー�
 
 DSF内の2つの主なストレージ構造は、**Storage Pool** と **Storage Containers** です。
 
-The **Storage Pool** is the aggregation of all of the physical disks within a given Nutanix cluster. The cluster manages distribution of data, so configuration of additional storage pools (like LUNs in a traditional storage environment) is **not** required. As new nodes are added to a cluster, disks are automatically added to the pool and the cluster will begin `re-distributing data to the new disks <https://nutanixbible.com/#anchor-book-of-acropolis-disk-balancing>`_ as a background task.
-
 **Storage Pool** は、与えられたNutanixクラスタ内のすべての物理ディスクの集合体です。
 クラスタはデータの分配を管理するため、追加のストレージプール(従来のストレージ環境のLUNのようなもの)の設定は必要ありません。
 新しいノードがクラスタに追加されると、ディスクは自動的にプールに追加され、クラスタはバックグラウンドタスクとして新しいディスクにデータの再配置を開始します。
@@ -56,6 +54,7 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
    - Select **Compression**
    - **Delay (In Minutes)** - 0
 
+
    .. note::
 
      他の設定はデフォルト値のままにします。
@@ -80,12 +79,11 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
 
      .. figure:: images/nutanix_tech_overview_14.png
 
-   **Storage Pool** の容量を全て共有する、異なるポリシーを持つコンテナを複数作成することが出来ます。
+   **Storage Pool** の容量を全て共有する異なるポリシーを持つコンテナを複数作成することが出来ます。
 
-   例えば、フルクローンの永続的な仮想デスクトップに使用されるストレージコンテナに対して Deduplication を有効にしたいと思うかもしれませんが、データベースのようなワークロードには重複排除は意味がありません。
-   `deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_
-   同様に、バックアップやセキュリティフッテージなどのアーカイブデータ用に Erasure codingを有効にしたストレージコンテナを作成したい場合もあるでしょう。
-   `erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_
+   例えば、フルクローンの永続的な仮想デスクトップに使用されるストレージコンテナに対して  `Deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_を有効にしたいと思うかもしれませんが、データベースのようなワークロードには重複排除は意味がありません。
+
+   同様に、バックアップやセキュリティフッテージなどのアーカイブデータ用に `erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_ を有効にしたストレージコンテナを作成したい場合もあるでしょう。
 
 
 #. コンテナ構成を更新することで、構成の基本をさらに掘り下げてみましょう。ワークロードが混在した状態で実行されているクラスタ上の重要な VM のキャパシティの可用性を確保するにはどうすればよいでしょうか？
@@ -106,8 +104,6 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
 
 Redundancy Factor (RF) (冗長係数)
 .................
-
-The Distributed Storage Fabric uses a Replication Factor (RF) approach to data protection, rather than legacy RAID techniques. By default, writes to Nutanix storage create two copies of the data with the ability to sustain a single node failure - this is called **RF2**. For very large clusters, or critical workloads, Nutanix can write three copies of the data with the ability to sustain two node failures - this is called **RF3**.
 
 Distributed Storage Fabricは、従来のRAID技術ではなく、データ保護にレプリケーションファクター(RF)アプローチを使用します。
 デフォルトでは、Nutanixストレージへの書き込みは、単一ノードの障害にも耐えられるように、データの2つのコピーを作成します - これは **RF2** と呼ばれています。非常に大規模なクラスタや重要なワークロードの場合、Nutanixは2つのノード障害に耐えられる能力を持ったデータの3つのコピーを書き込むことができます - これは **RF3** と呼ばれています。
