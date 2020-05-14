@@ -1,7 +1,7 @@
 .. _lab_nutanix_technology_overview:
 
 ---------------------------------
-Nutanix Tech ラボ概要
+Nutanix Tech ラボ
 ---------------------------------
 
 概要
