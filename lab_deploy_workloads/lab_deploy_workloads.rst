@@ -124,7 +124,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
 #. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit** をクリックすることで、**Nutanix Guest Tools (NGT)** のインストール準備をします。
 
-  これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、**Self-Service File Restore (SSR)**および**Application Consistent (VSS) snapshots**をサポートするサービスが含まれています
+  これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、 **Self-Service File Restore (SSR)** および **Application Consistent (VSS) snapshots** をサポートするサービスが含まれています
 
     .. figure:: images/deploy_workloads_nutanix_guest_tools.png
 
