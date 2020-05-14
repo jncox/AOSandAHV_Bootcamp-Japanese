@@ -39,7 +39,7 @@ VM スナップショット
 
 #. **Save** をクリックします。
 
-#.VM の電源を入れ、そのコンソールウィンドウを起動してみてください。
+#. VM の電源を入れ、そのコンソールウィンドウを起動してみてください。
 
    Note VM には起動用のディスクがなくなったためOSが起動できず、2048 ゲームが表示されていることに注意してください。
 
@@ -64,7 +64,7 @@ VM スナップショット
 
 #. メニューのデータ保護コンテキストを開くと、警告画面が表示されます **OK** をクリックして進めます。
 
- .. figure:: images/data_protection_01.png
+  .. figure:: images/data_protection_01.png
 
 #.  PDの名前を入力し **Create** をクリックします。
 
@@ -85,9 +85,6 @@ VM スナップショット
    .. note::
 
       AHVはNearSyncスナップショットをサポートしており、RPOは1分と低くなっています
-
-   .. note::
-
       同じPDに複数のスケジュールを適用することができるので、時間単位、日単位、月単位のスナップショットを 複数回取得して保持することができます。
 
 #. 保持ポリシーを設定する（例：直近の5つのスナップショットを保持する)
@@ -98,11 +95,11 @@ VM スナップショット
 
       .. figure:: images/snapshot_02.png
 
-#. **Create Schedule**をクリックします
+#. **Create Schedule** をクリックします
 
-#. **Close**をクリックして終了します
+#. **Close** をクリックして終了します
 
-追加情報はこちらで確認できます。`here <https://nutanixbible.com/#anchor-book-of-acropolis-backup-and-disaster-recovery>`_.
+追加情報は `こちら <https://nutanixbible.com/#anchor-book-of-acropolis-backup-and-disaster-recovery>`_ で確認できます。
 
 これで完了です。これでPrismのネイティブデータ保護の設定が完了しました。
 
