@@ -1,33 +1,34 @@
 .. _lab_nutanix_technology_overview:
 
 ---------------------------------
-Nutanix Tech Overview Lab
+Nutanix Tech ラボ概要
 ---------------------------------
 
-Overview
+概要
 ++++++++
 
-This lab will introduce the Prism Element UI, and familiarize you with its layout and navigation.
+このラボでは、Prism Element UI を紹介し、その全容と使い方を理解します。
 
 Prism Element
 +++++++++++++
 
-The Prism service provides the web UI for managing Nutanix clusters and runs on every Controller VM (CVM). This local Prism service, referred to Prism Element, can be accessed via the IP of any individual CVM, or via the virtual IP for the cluster, which will redirect to the current Prism leader.
+PrismサービスはNutanixクラスタを管理するためのWeb UIを提供し、すべてのController VM (CVM)上で動作します。
+また、Prism Elementと呼ばれるPrism内のサービスは個々のCVMのIPを介して、またはクラスタの仮想IPを介してアクセスすることができ、現在のPrismリーダーにリダイレクトされます。
 
-From the Firefox web browser (preferred), log into the Nutanix Prism GUI using the Cluster IP.
+クラスタIPを使用してNutanix Prism GUIにログインします。推奨ブラウザはGoogle Chorome もしくは Firefoxです。
 
-#. Open \https://<*NUTANIX-CLUSTER-IP*>:9440 in a new browser tab.
+#. \https://<*NUTANIX-CLUSTER-IP*>:9440 を開きます。
 
-#. Log in using the following credentials:
+#. 以下の認証情報を用いてログインします。
 
    - **Username** - admin
    - **Password** - *HPOC Password*
 
    .. figure:: images/nutanix_tech_overview_01.png
 
-#. After you log in to Prism Element, familiarize yourself with the Prism UI. Explore the information on the **Home** screen, as well as the other screens.
+#. Prism Elementにログインしたら、PrismのUIに慣れておきましょう。 ホーム画面や他の画面の情報を確認してください。
 
-#. Review the Home screen, and identify the following items:
+#. ホーム画面の以下の項目を確認してください。
 
    - Hypervisor
    - Version
@@ -39,13 +40,13 @@ From the Firefox web browser (preferred), log into the Nutanix Prism GUI using t
 
    .. figure:: images/nutanix_tech_overview_02.png
 
-#. Review the UI navigation options under the **View Options** pull-down menu. The label of this menu changes based on the dashboard that is currently displayed. For example, from the Home dashboard it will be labeled **Home**, from the Health dashboard it will be labeled **Health**, etc.
+#. **View Options** のプルダウンメニューにUIナビゲーション・オプションがあることを確認してください。 このメニューのラベルは、現在表示されているダッシュボードに基づいて変わります。 たとえば、Homeダッシュボードからは **Home** 、Healthダッシュボードからは **Health** などのラベルが表示されます。
 
    .. figure:: images/nutanix_tech_overview_03.png
 
-#. Examine the cluster hardware under **Prism > Hardware**, click **Hardware**, then click **Diagram**.
+　**Prism > Hardware** でクラスタのハードウェアを調べ、**Hardware** をクリックしてから **Diagram** をクリックします。
 
-#. Review the hardware summary information:
+#. ハードウェア情報を確認してください。
 
    - Blocks
    - Hosts
@@ -55,7 +56,7 @@ From the Firefox web browser (preferred), log into the Nutanix Prism GUI using t
 
    .. figure:: images/nutanix_tech_overview_04.png
 
-#. Review the other sections, and do a quick walk through:
+#. 他の項目も目を通しておきましょう。
 
    - VM
    - Health
@@ -65,7 +66,7 @@ From the Firefox web browser (preferred), log into the Nutanix Prism GUI using t
    - Alerts
    - Etc.
 
-#. Review other sections of the Prism UI
+#. Prism UIの他のセクション
 
    - Health :fa:`heartbeat`
    - Alarms :fa:`bell`
@@ -77,49 +78,51 @@ From the Firefox web browser (preferred), log into the Nutanix Prism GUI using t
 
    .. figure:: images/nutanix_tech_overview_05.png
 
-Prism Element UI Review
+Prism Element UI のレビュー
 .......................
 
-Where would you locate the version of AOS you are running?
+実行しているAOSのバージョンはどこから確認できますか？
 
 .. figure:: images/nutanix_tech_overview_06_5-11.png
 
-You can do this by clicking on the **User** drop down :fa:`user`, and clicking **About Nutanix**.
+**User** のドロップダウンメニューから :fa:`user` の **About Nutanix** をクリックすると確認できます。
 
-How would you get to the following screen to view a summary of the number of hosts (or nodes) and the resource capacity and current utilization?
+ホスト（またはノード）の数とリソースの容量と現在の利用率の概要はどこから確認できますか？
 
 .. figure:: images/nutanix_tech_overview_07.png
 
-In **Prism > Hardware**, click **Hardware**, then click **Table**.
+**Prism > Hardware** と進み、 **Hardware** の **Table** をクリックします。
 
-How would you get the following screen to see the health of your cluster?
+クラスターの状態を確認するためにはどこから確認できますか？
 
 .. figure:: images/nutanix_tech_overview_08.png
 
-In **Prism > Health**, click **Health**, then click **Summary** in the right pane.
+**Prism > Health** と進み、 **Health** の **Summary** から確認できます。
 
-What page would show you the latest activity in the system? On this page, you can monitor the progress of any task and keep track of what has been done in the past using time stamps. Can you figure out two different ways to get there?
+システムの最新のアクティビティはどのページに表示されますか？
+このページでは、任意のタスクの進捗状況を監視し、タイムスタンプを使用して過去に何が行われたかを追跡することができます。
+2つの異なる方法を考えてみましょう。
 
 .. figure:: images/nutanix_tech_overview_09.png
 
-From the View Options menu, select **Tasks**, or click the circle :fa:`circle-o` icon in the toolbar, to the right of the bell icon :fa:`bell`.
+表示オプションメニューから **Tasks** を選択するか、ツールバーのベルアイコン : fa:`Bell` の右にあるサークル : fa:`circle-o` アイコンをクリックします。
 
 .. note::
 
-  In ESXi:
+  ESXiの場合
 
-  - The containers created in Prism appear as datastores in vCenter.
+  - Prismで作成されたコンテナーは、vCenterでデータストアとして表示されます。
 
-  Example view of storage containers from Prism:
+  Prismからのストレージコンテナーの表示例
 
   .. figure:: images/nutanix_tech_overview_13.png
 
-  Example view of storage containers (datastores) from vCenter:
+  vCenterからのストレージコンテナー(データストア)の表示例
 
   .. figure:: images/nutanix_tech_overview_14.png
 
-Takeaways
+まとめ
 +++++++++
 
-- Prism is thoughtfully laid out UI
-- Critical information is displayed front and center
+- Prism は考え抜かれたUIです。
+- 重要な情報は中央部分に配置しています。
