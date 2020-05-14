@@ -24,17 +24,13 @@ DSF内の2つの主なストレージ構造は、**Storage Pool** と **Storage 
 **Storage Pool** は、与えられたNutanixクラスタ内のすべての物理ディスクの集合体です。
 クラスタはデータの分配を管理するため、追加のストレージプール(従来のストレージ環境のLUNのようなもの)の設定は必要ありません。
 新しいノードがクラスタに追加されると、ディスクは自動的にプールに追加され、クラスタはバックグラウンドタスクとして新しいディスクにデータの再配置を開始します。
-`バイブル <https://nutanixbible.com/#anchor-book-of-acropolis-disk-balancing>`_
-`here <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_
-
 
 **Storage Containers** は、VMまたはvDisksのグループに対してストレージポリシーを構成することができるソフトウェアで定義された論理的な構造になっています。 次のエクササイズでは、Prism内でNutanixストレージを作成して構成するプロセスを説明します。
-
 
 .. note::
 
    vDisks、エクステント、エクステントグループなどの追加のDSF構成については、Nutanixバイブルの以下のセクションを参照してください。
-   `<https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`
+  `<https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`_
 
 このラボでは、Prism Elementsを使用して基本的なストレージコンテナのセットアップを行います
 
@@ -82,9 +78,9 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
 
    **Storage Pool** の容量を全て共有する異なるポリシーを持つコンテナを複数作成することが出来ます。
 
-   例えば、フルクローンの永続的な仮想デスクトップに使用されるストレージコンテナに対して  `Deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_を有効にしたいと思うかもしれませんが、データベースのようなワークロードには重複排除は意味がありません。
+   例えば、フルクローンの永続的な仮想デスクトップに使用されるストレージコンテナに対して  `Deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_ を有効にしたいと思うかもしれませんが、データベースのようなワークロードには重複排除は意味がありません。
 
-   同様に、バックアップやセキュリティフッテージなどのアーカイブデータ用に `erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_ を有効にしたストレージコンテナを作成したい場合もあるでしょう。
+   同様に、バックアップやセキュリティフッテージなどのアーカイブデータ用に `erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_  を有効にしたストレージコンテナを作成したい場合もあるでしょう。
 
 
 #. コンテナ構成を更新することで、構成の基本をさらに掘り下げてみましょう。ワークロードが混在した状態で実行されているクラスタ上の重要な VM のキャパシティの可用性を確保するにはどうすればよいでしょうか？
