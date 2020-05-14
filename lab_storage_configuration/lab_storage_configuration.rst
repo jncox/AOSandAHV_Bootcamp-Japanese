@@ -88,10 +88,10 @@ Prism Elementを使用して、基本的なコンテナー設定を実行して�
 
    .. figure:: images/storage_config_04.png
 
-   このビューには、利用可能な各データ削減オプションによる節約額の内訳と、コンテナの**Effective Usable Capacity** が表示されます。
+   このビューには、利用可能な各データ削減オプションによる節約の内訳と、コンテナの **Effective Usable Capacity** が表示されます。
    詳細については項目にマウスを重ねてください。
-   **Data Reduction Ratio** はデータ圧縮、重複排除、イレイジャーコーディングのみを考慮したデータ効率です。）
-   **Overall Efficiency** はDSFのネイティブデータ回避(シン・プロビジョニングやインテリジェント・クローニング)のデータ効率に沿います。
+   **Data Reduction Ratio** はデータ圧縮、重複排除、イレイジャーコーディングのみを考慮したデータ効率です。
+   **Overall Efficiency** はDSFのネイティブデータ回避 (シン・プロビジョニングやインテリジェント・クローニング) のデータ効率に沿います。
 
    .. note::
 
