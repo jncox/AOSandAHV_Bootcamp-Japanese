@@ -22,7 +22,7 @@ VMネットワークはPrism（またはオプションでCLI/REST）を介し�
 
 AHVでは、IPアドレス管理（IPAM）サービスを使用してVMにIPアドレスを自動的に提供するために、DHCPサーバを設定することもできます。つまり、ネットワーク用に別途DHCPサーバを設定する必要はありません。これにより、ネットワーク管理が容易になります。
 
-AHVネットワークの詳細については以下を参照ください。 `here <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_
+AHVネットワークの詳細については `以下 <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_ を参照ください。 
 
 仮想ネットワーク
 ................
