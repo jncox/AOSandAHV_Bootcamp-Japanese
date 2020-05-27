@@ -1,46 +1,49 @@
 .. _lab_storage_configuration:
 
 ---------------------------
-Storage Configuration Lab
+ストレージ構成
 ---------------------------
 
-Overview
+概要
 ++++++++
 
-In this lab we will use Prism to perform a basic container setup.
+このラボでは、Prismを使用して基本的なコンテナ設定を実行します。
 
-Distributed Storage Fabric
+分散ストレージファブリック
 ++++++++++++++++++++++++++
 
-The Nutanix Distributed Storage Fabric (DSF) appears to the hypervisor like any centralized storage array, but uses the CVMs and local storage in each node to provide shared storage for the cluster - the combination of compute and distributed local storage is what is now commonly referred to as **Hyperconverged Infrastructure (HCI)**.
+NutanixのDistributed Srorage Fabric(DSF)はハイパーバイザからは集中管理型のストレージアレイに見えますが、各ノードの CVM とローカルストレージを使用してクラスタへ共有ストレージを提供します。
+コンピュートと分散ストレージの組み合わせは、現在一般的に **ハイパーコンバージドインフラストラクチャ (HCI)** と呼ばれるものです。
 
 .. figure:: images/dsf_overview.png
 
-As a pioneer in the HCI space, Nutanix DSF is a mature solution capable of delivering the performance and resiliency needed to support `many different workloads <https://www.nutanix.com/solutions/>`_, including enterprise databases, virtual desktops, ROBO, Big Data, and more.
+HCI分野でのパイオニアとして、DSFはエンタープライズデータベース、仮想デスクトップ、ROBO、ビックデータなどの様々なワークロードをサポートするために必要なパフォーマンスと弾性を提供できる成熟したソリューションです。
 
-The two main storage constructs within the DSF are the **Storage Pool** and **Storage Containers**.
+DSF内の2つの主なストレージ構造は、**Storage Pool** と **Storage Containers** です。
 
-The **Storage Pool** is the aggregation of all of the physical disks within a given Nutanix cluster. The cluster manages distribution of data, so configuration of additional storage pools (like LUNs in a traditional storage environment) is **not** required. As new nodes are added to a cluster, disks are automatically added to the pool and the cluster will begin `re-distributing data to the new disks <https://nutanixbible.com/#anchor-book-of-acropolis-disk-balancing>`_ as a background task.
+**Storage Pool** は、与えられたNutanixクラスタ内のすべての物理ディスクの集合体です。
+クラスタはデータの分配を管理するため、追加のストレージプール(従来のストレージ環境のLUNのようなもの)の設定は必要ありません。
+新しいノードがクラスタに追加されると、ディスクは自動的にプールに追加され、クラスタはバックグラウンドタスクとして新しいディスクにデータの再配置を開始します。
 
-**Storage Containers** are software-defined, logical constructs that allow you to configure storage policy for groups of VMs or vDisks. In the next exercise, you will walk through the process for creating and configuring Nutanix storage within Prism.
+**Storage Containers** は、VMまたはvDisksのグループに対してストレージポリシーを構成することができるソフトウェアで定義された論理的な構造になっています。 次のエクササイズでは、Prism内でNutanixストレージを作成して構成するプロセスを説明します。
 
 .. note::
 
-   To learn more about additional DSF constructs such as vDisks, extents, and extent groups, refer to `this section <https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`_ of the Nutanix Bible.
+   vDisks、エクステント、エクステントグループなどの追加のDSF構成については、`Nutanix バイブル <https://nutanixbible.com/#anchor-book-of-acropolis-distributed-storage-fabric>`_ を参照してください。
 
-In this lab we will use Prism Elements to perform a basic storage container setup.
+このラボでは、Prism Elementsを使用して基本的なストレージコンテナのセットアップを行います
 
-Prism Element Storage Configuration Items
+Prism Elementストレージ構成アイテム
 +++++++++++++++++++++++++++++++++++++++++
 
-Configure Storage Containers
+ストレージコンテナの構成
 ............................
 
-Let's use Prism Element to perform a basic container setup.
+Prism Elementを使用して、基本的なコンテナー設定を実行してみましょう。
 
-#. In **Prism Element> Storage**, click **Storage**, click **Table**, then click **+ Storage Container**.
+#. **Prism Element> Storage** と進み、 **Storage** の **Table** そして **+ Storage Container** をクリックします。
 
-#. Use the following specifications:
+#. 次の値を入力してください。
 
    - **Name** - *Initials*-container
    - Select **Advanced Settings**
@@ -50,78 +53,90 @@ Let's use Prism Element to perform a basic container setup.
 
    .. note::
 
-     Leave other settings at their default values.
+     他の設定はデフォルト値のままにします。
 
-#. Click **Save**.
+#. **Save** をクリックします。
 
    .. figure:: images/storage_config_01.png
 
-   The storage container will now be available across all nodes within the cluster.
+   これで、ストレージコンテナーがクラスター内のすべてのノードで使用できるようになります。
 
-   In AHV, the hypervisor creates a separate iSCSI connection to the DSF for each vDisk in use. In ESXi environments, each **Storage Container** is automatically mounted to the hypervisor as an NFS datastore. Similarly, in Hyper-V, each **Storage Container** is presented as an SMB datastore.
+   AHVでは、ハイパーバイザーは、使用中の各vDiskに対してDSFへの個別のiSCSI接続を作成します。
+   ESXi 環境では、各 **Storage Container** は、NFS データストアとしてハイパーバイザーに自動的にマウントされます。
+   同様に、Hyper-V環境では、各 **Storage Container** はSMBデータストアとして表示されます。
 
    .. note::
 
-     Example view of **Storage Containers** from Prism:
+     Prismにおける **Storage Containers** の表示例
 
      .. figure:: images/nutanix_tech_overview_13.png
 
-     Example view of **Storage Containers** (datastores) from vCenter:
+     vCenterにおける **Storage Containers** (datastores) の表示例
 
      .. figure:: images/nutanix_tech_overview_14.png
 
-   You can create multiple containers with different policies, all sharing capacity from the **Storage Pool**.
+   **Storage Pool** の容量を全て共有する異なるポリシーを持つコンテナを複数作成することが出来ます。
 
-   For instance, you may want to enable `deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_ for a storage container used for full clone persistent virtual desktops, but deduplication wouldn't make sense for workloads such as databases. Similarly, you may want to create a storage container with `erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_ enabled for archival data such as backups or security footage.
+   例えば、フルクローンの永続的な仮想デスクトップに使用されるストレージコンテナに対して  `Deduplication <https://nutanixbible.com/#anchor-book-of-acropolis-elastic-dedupe-engine>`_ を有効にしたいと思うかもしれませんが、データベースのようなワークロードには重複排除は意味がありません。
 
-#. Explore the configuration basics further by updating your Container configuration. How would you ensure capacity availability for critical VMs on a cluster running mixed workloads?
+   同様に、バックアップやセキュリティフッテージなどのアーカイブデータ用に `Erasure coding <https://nutanixbible.com/#anchor-book-of-acropolis-erasure-coding>`_  を有効にしたストレージコンテナを作成したい場合もあるでしょう。
 
-#. Try selecting different storage containers on the cluster and reviewing the **Storage Container Details** below the table.
+
+#. コンテナ構成を更新することで、構成の基本をさらに掘り下げてみましょう。ワークロードが混在した状態で実行されているクラスタ上の重要な VM のキャパシティの可用性を確保するにはどうすればよいでしょうか？
+
+#. 別のストレージコンテナーを選択して、画面下部の **Storage Container Details** を確認しましょう。
 
    .. figure:: images/storage_config_04.png
 
-   This view provides a breakdown of the savings from each available data reduction option as well as the **Effective Usable Capacity** of the container. Hover your mouse over any link for further details. The **Data Reduction Ratio** is the data efficiency when accounting for **only** compression, deduplication, and erasure coding. The **Overall Efficiency** number tracks data reduction as well as native data avoidance in DSF, specifically savings from thin provisioning and cloning.
+   このビューには、利用可能な各データ削減オプションによる節約の内訳と、コンテナの **Effective Usable Capacity** が表示されます。
+   詳細については項目にマウスを重ねてください。
+   **Data Reduction Ratio** はデータ圧縮、重複排除、イレイジャーコーディングのみを考慮したデータ効率です。
+   **Overall Efficiency** はDSFのネイティブデータ回避 (シン・プロビジョニングやインテリジェント・クローニング) のデータ効率に沿います。
 
    .. note::
 
-      Interested in determining how much logical storage Nutanix can provide in different RF2 or RF3 configurations? Check out the `Nutanix Storage Calculator <https://services.nutanix.com/#/storage-capacity-calculator>`_.
+      RF2やRF3構成でNutanixが提供できる論理ストレージの量がどう決まるのか、その違いに興味がありますか? Nutanix Storage Calculatorについてのリンクをチェックしてください。`Nutanix Storage Calculator <https://services.nutanix.com/#/storage-capacity-calculator>`_
 
-Redundancy Factor (RF)
+Redundancy Factor (RF) (冗長係数)
 .................
 
-The Distributed Storage Fabric uses a Replication Factor (RF) approach to data protection, rather than legacy RAID techniques. By default, writes to Nutanix storage create two copies of the data with the ability to sustain a single node failure - this is called **RF2**. For very large clusters, or critical workloads, Nutanix can write three copies of the data with the ability to sustain two node failures - this is called **RF3**.
+Distributed Storage Fabricは、従来のRAID技術ではなく、データ保護にレプリケーションファクター(RF)アプローチを使用します。
+デフォルトでは、Nutanixストレージへの書き込みは、単一ノードの障害にも耐えられるように、データの2つのコピーを作成します - これは **RF2** と呼ばれています。非常に大規模なクラスタや重要なワークロードの場合、Nutanixは2つのノード障害に耐えられる能力を持ったデータの3つのコピーを書き込むことができます - これは **RF3** と呼ばれています。
 
-Interested in learning about how RF writes and reads work? Check out the video below!
+RFの書き込みと読み取りの仕組みについて知りたいですか？ 下のビデオをチェックしてください！
 
 .. raw:: html
 
    <iframe width="640" height="360" src="https://www.youtube.com/embed/OWhdo81yTpk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-RF policies are applied on a per storage container basis within Prism Element.
+RFポリシーは、Prism Element内のストレージコンテナーごとに適用されます。
 
-Nutanix clusters can also enforce `availability domain policies <https://nutanixbible.com/#anchor-book-of-acropolis-availability-domains>`_ at the Block or Rack level.
+Block Awarenessは、十分に大規模なクラスタでは、データのセカンダリコピーがプライマリコピーと同じ物理的筐体内のノードに書き込まれないようにします
+これにより、マルチノードブロックのデータ損失を回避することができます。
+同じコンセプトは、複数のラックにまたがるNutanixクラスタを使用して適用することができます。
 
-Block Awareness, in a sufficiently large cluster, ensures that secondary copies of data are not written to a node within the same physical enclosure as the primary copy. This allows for the loss of a multi-node block without experiencing data unavailability. The same concept can be applied using a Nutanix cluster spanning multiple racks.
+ラック/ブロック・フォルトトレランスの基本的な要件は、メタデータの3つのコピーを保存する必要があるため、クラスタ内に最低3つのブロックがあることです（RF2の場合）。 AOS 5.8からは、イレイジャーコーディングを有効にしてラックとブロックの認識をサポートすることができます。
 
-The basic requirement for rack/block fault tolerance is to have minimum 3 blocks in the cluster (for RF2) as we need to store 3 copies of metadata. Starting in AOS 5.8, rack and block awareness can be supported with erasure coding enabled.
-
-#. In **Prism > Home**, click **OK** in the **Data Resiliency Status** box.
+#. **Prism > Home** と戻り  の **Data Resiliency Status**  ボックスの **OK** をクリックします。
 
 .. figure:: images/storage_config_03.png
 
-   Data Resiliency Status indicates how many failures can be tolerated without impacting the cluster. Each service listed has a specific function in the cluster. For example, Zookeeper nodes maintain configuration data (service states, IPs, host information, etc.) for the cluster.
+  Data Resiliency Statusは、クラスタに影響を与えることなく、どれだけの障害を許容できるかを示します。
+  リストされた各サービスは、クラスタ内で特定の機能を持っています。
+  例えば、Zookeeper ノードはクラスタの設定データ (サービスの状態、IP、ホスト情報など) を維持します。
 
-#. The RF of a cluster in Prism Element can be configured by clicking **Redundancy State** in the :fa:`cog` menu.
+#. Prism ElementのRF設定は :fa:`cog` メニューの **Redundancy State** から設定出来ます。
 
    .. note::
 
-     For this exercise, please leave the redundancy factor configured as 2.
+     この演習では、冗長計数を2に設定したままにします。
 
-   An RF2 cluster can be upgraded in place to support RF3 (with a minimum of 5 nodes). If a cluster is configured for RF3, 5 copies of metadata will be created for all data, regardless of whether or not the individual storage containers are configured as RF2 or RF3.
+   RF2 クラスターは、RF3 をサポートするようにアップグレードすることができます（最低 5ノード必要です）
+   クラスタがRF3用に構成されている場合、個々のストレージコンテナがRF2またはRF3として構成されているかどうかにかかわらず、すべてのデータに対してメタデータのコピーが5つ作成されます
 
-Takeaways
+まとめ
 +++++++++
 
-- The Distributed Storage Fabric provides RF2 or RF3 shared storage to the cluster.
+- Distributed Storage Fabricは、クラスターにRF2またはRF3共有ストレージを提供します。
 
-- Storage Containers allow you to define storage policy for VMs, including RF level, compression, deduplication, and erasure coding.
+- Storage Containersでは、RFレベル、圧縮、重複排除、消去コーディングなど、VMのストレージポリシーを定義することができます

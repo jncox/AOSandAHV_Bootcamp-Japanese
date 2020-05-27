@@ -1,31 +1,33 @@
 .. _lab_manage_workloads:
 
 ------------------------
-Managing Workloads Lab
+ワークロード管理
 ------------------------
 
-Overview
+概要
 ++++++++
 
-Now that you have a couple VMs deployed, let’s have some fun and explore some of the VM management tasks with AHV (power actions, searching, cloning, and migrating).
+いくつかの VM がデプロイされたので、AHV を使った VM 管理タスク (電源管理、検索、クローン、マイグレーション) を操作してみましょう。
 
-Workload Management
+ワークロードの管理
 +++++++++++++++++++
 
-Power Actions and Console Access
+電源操作とコンソールアクセス
 ................................
 
-Explore VM power actions and console access.
+VMの電源操作とコンソールアクセスについて説明します。
 
-#. In **Prism Element > VM > Table**, use the search bar to locate the Linux VM you created in the previous exercise (*Initials*-**Linux_VM**).
+#. **Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン *Initials*- **Linux_VM** を見つけます。
 
-   Note that the Power State column for that VM shows a red dot, indicating that the VM is powered off.
+   .. note::
 
-#. Select the VM, then click **Power On**.
+   その VM の Power State 列には赤いドットが表示され、VM が電源オフであることを示していることに注意してください。
 
-#. Select the VM, then click **Launch Console**.
+#. その仮想マシンを選択して **Power On** をクリックします。
 
-   The console window provides 4 actions: **Mount ISO, CTRL-ALT-DEL, Take Screen Capture, and Power**.
+#. その仮想マシンを選択して **Launch Console** をクリックします。
+
+   コンソールウィンドウには 4つのアクションが用意されています。 **Mount ISO, CTRL-ALT-DEL, Screen Capture, 電源操作** です。
 
    .. figure:: images/manage_workloads_01_a.png
 
@@ -33,106 +35,106 @@ Explore VM power actions and console access.
 
      In ESX:
 
-     - The steps in this exercise could also be done from Prism while using an ESXi cluster that has its VMware vCenter instance registered to Prism.
+     - このエクササイズの手順は、VMware vCenterインスタンスがPrismに登録されているESXiクラスタを使用しているときに、Prismから実行できます。
 
      .. figure:: images/manage_workloads_06.png
 
-Cloning VMs
+仮想マシンのクローン
 ...........
 
-#. In **Prism Element > VM > Table**, select your *Initials*-**Linux_VM** VM.
+#. **Prism Element > VM > Table** と進み、 *Initials*-**Linux_VM** を選択します。
 
-#. Click **Clone** from the **Actions** list.
+#. **Actions** リストから **Clone** をクリックします。
 
-#. Fill out the following fields and click **Save**:
+#. 次のフィールドに入力し、 **Save** をクリックします。
 
-   Leave other settings at their default values.
 
    - **Number of Clones** - 2
    - **Prefix Name**  - *Initials*-Linux-Clone
    - **Starting Index Number** - 1
 
+   他の設定はデフォルト値のままにします。
+
    .. figure:: images/manage_workloads_02.png
 
-#. Leave them **Powered Off**.
+#. 電源操作は行わず **Powered Off** のままにします。
 
-   Both Nutanix snapshots and clones use a `redirect-on-write <https://nutanixbible.com/#anchor-book-of-acropolis-snapshots-and-clones>`_ algorithm to quickly and efficiently create copies of VMs as a metadata operation.
+  Nutanix におけるスナップショットとクローンは いずれも  `redirect-on-write <https://nutanixbible.com/#anchor-book-of-acropolis-snapshots-and-clones>`_ アルゴリズムを使用して、メタデータを操作することで迅速かつ効率的に作成します。
 
-Migrating a VM Between Hosts
+ホスト間における仮想マシンの移行
 ............................
 
-VM live migration is a critical feature for any virtualized environment, allowing VMs to move seamlessly across hosts within a cluster to enable infrastructure maintenance or performance balancing.
+仮想マシンのライブマイグレーションは、あらゆる仮想化環境にとって重要な機能であり、VMをクラスタ内のホスト間でシームレスに移動させ、インフラストラクチャのメンテナンスやパフォーマンスバランシングを可能にします。
 
-#. In **Prism Element > VM > Table**, select your *Initials*-**Linux_VM** VM.
+#. **Prism Element > VM > Table** と進み、 *Initials*-**Linux_VM** を選択します。
 
-   You should see that it has no entry in the **Host** column when it is powered off.
+   電源オフ状態では、 **Host** 欄に何も値がないことを確認します。
 
    .. figure:: images/manage_workloads_03.png
 
-#. Select the **Powered On** VM, then click **Migrate**.
+#. 仮想マシンを選択し、**Powered On** をクリックします。その後 **Migrate** をクリックします。
 
-   You can either choose one of the other hosts in the cluster as a migration target for the VM, or accept the default and let AHV automatically select a location.
+   仮想マシンの移行対象としてクラスタ内の他のホストのいずれかを選択するか、デフォルトを受け入れて AHV が自動的に場所を選択するようにすることができます。
 
-#. Click **Migrate** to finalize the action.
+#. **Migrate** をクリックして、アクションを実行します。
 
-   When the task completes, verify that your VM host location has changed from the host recorded above to the new location you selected.
+   タスクが完了したら、VMホストの場所がマイグレーション前のホストから選択した新しいホストに変更されたことを確認します
 
    .. figure:: images/manage_workloads_04.png
 
 .. note::
-   To see the progress of the migration, click on the All VM Tasks tab at the bottom of the screen. Below is a screenshot of a migration.
+   マイグレーションの進捗状況を確認するには、画面下部の「All VM Tasks」タブをクリックします。以下は、マイグレーションのスクリーンショットです。
 
  .. figure:: images/manage_workloads_03_a.png
 
-Configuring Affinity Policies
+アフィニティポリシーの構成
 .............................
 
-#. In **Prism Element > VM > Table**, select your *Initials*-**Linux_VM** VM.
+#. **Prism Element > VM > Table** と進み *Initials*-**Linux_VM** を選択します。
 
-#. Select a **Powered Off** VM, then click **Update** and **+ Set Affinity**.
+#. **Powered Off** を押し、電源状態をオフにして、**Update** そして **+ Set Affinity** とクリックします。
 
-#. Select two **Hosts** to which the VM can have affinity, and click **Save** and **Save** to finish.
+#. アフィニティ設定をするために、2つの **Hosts** を選択し、 **Save** 、 **Save** とクリックします。
 
-   .. note:: We select more then one host so the VM has a place to migrate too in the event of a Node failure.
+   .. note:: 複数のホストを選択して、ノード障害が発生した場合にVMにも移行する場所を用意します。
 
-#. Power on the VM, and verify it is on one of the **Hosts** you selected in the affinity policy.
+#. 仮想マシンの電源を入れ アフィニティポリシーで選択した **Hosts** 上で起動したことを確認します。
 
-#. Select the VM, then click **Migrate**.
+#. 仮想マシンを選択し **Migrate** をクリックします。
 
-   You should see the following message:
+   次のメッセージが表示されます
 
    - This VM has host affinity with 2 out of the 4 available hosts. It can only be migrated to those hosts.
 
-#. Click **Migrate**.
+#. **Migrate** をクリックします
 
-   You should see that the VM has moved to the other host.
+   仮想マシンが他のホストに移動したことが分かります。
 
-VM-to-Host affinity rules are commonly used to map VMs to certain hosts for performance or licensing reasons. AHV can also create VM-to-VM anti-affinity rules, commonly used for highly available applications where you need to ensure multiple instances of an application do not run on the same node.
+VM-to-Hostアフィニティルールは、一般的にパフォーマンスやライセンスの理由から、VMを特定のホストにマッピングするために使用されます。AHVでは、VM対VMのアンチアフィニティルールを作成することもできます。これは、アプリケーションの複数のインスタンスが同じノード上で実行されないようにする必要がある高可用性アプリケーションによく使用されます。
 
-High Availability & Dynamic Scheduling
+高可用性と動的スケジューリング
 ......................................
 
-Unlike ESXi, high availability is enabled by default for AHV and will restart VMs in a best-effort manner in the event of a host failure. Additional configuration can set resource reservations to ensure there is capacity during an HA event.
+ESXiとは異なり、AHVではデフォルトでハイアベイラビリティが有効になっており、ホスト障害が発生した場合にベストエフォートな方法で仮想マシンを再起動します。追加設定でリソースの予約を設定して、HA イベント時に容量を確保することができます。
 
 .. note::
 
-   To enable memory reservation, select **Enable HA Reservation** under :fa:`cog` **> Manage VM High Availability**.
+  メモリ予約を有効にするには、: fa:`cog` **> Manage VM High Availability** で **Enable HA Reservation** を選択します
+  共有クラスタリソースのメモリはすでに制限されているため、HAメモリ予約を有効にしないでください。
 
-   As memory is already limited on the shared cluster resources, please do NOT enable HA memory reservations.
+AHVは、**Acropolis Dynamic Scheduler** サービスを使用してVMのインテリジェントな初期配置を実行し、ワークロードのパフォーマンスを最適化するためにVMをクラスタ内の他のホストに動的に移行することができます。これは、追加の設定なしに実行可能です。
 
-With the **Acropolis Dynamic Scheduler** service, AHV performs intelligent initial placement of VMs and can dynamically migrate VMs to other hosts within the cluster to optimize workload performance. This is done "out of the box" without additional configuration.
+  Nutanix AHVソリューションの利点は、CPU/メモリの輻輳回避だけでなく、ストレージ性能に基づいてVMの配置を決定できることです。
 
-A benefit of a Nutanix AHV solution is being able to make VM placement decisions not based solely on CPU/memory congestion avoidance, but also based on storage performance.
-
-See `here <https://nutanixbible.com/#anchor-book-of-acropolis-dynamic-scheduler>`_ for additional details about the **Acropolis Dynamic Scheduler**.
+**Acropolis Dynamic Scheduler** について追加情報は `here <https://nutanixbible.com/#anchor-book-of-acropolis-dynamic-scheduler>`_ を参照してください。
 
 Prism Search
 ............
 
-The Prism search function makes it easier to identify problems or find feature documentation in Prism Central. Use Prism Central’s search capabilities by typing a few search queries to see how easy this can make the tasks above.
+Prismの検索機能を使用すると、Prism Centralで問題を特定したり、機能ドキュメントを見つけたりするのが簡単になります。いくつかの検索クエリを入力してPrism Centralの検索機能を使用して、上記のタスクをどれだけ簡単にできるかを確認してください
 
 
-Suggestions:
+例:
 
 - vm cpu > 1
 - vm mem > 2
@@ -141,17 +143,17 @@ Suggestions:
 - powered on
 - powered on cpu = 8
 
-#. In **Prism Central >** :fa:`search`.
+#. **Prism Central >** :fa:`search` を使って検索します
 
 - Note the result types: Entity, Alerts, and Help.
 - Click the star icon to save a search.
 
 .. note::
 
-  The search hot key (a slash mark, or /) can be used from anywhere in the Prism Central UI to bring up the search function.
+  検索ホットキー（スラッシュマーク、または/）は、Prism Central UIのどこからでも検索機能を呼び出せます。
 
-Takeaways
+まとめ
 +++++++++
 
-- In this lab you got to experience first hand how AHV provides a complete set of tools and actions that can be done to manage the VMs in the cluster.
-- It is possible to register an ESXi cluster (via vCenter) to Prism and be able to perform some of the basic VM management tasks right from Prism as well.
+- このラボでは、クラスタ内のVMを管理するためのツールとアクションのコンプリートセットをAHVがどのように提供しているかを体験しました。
+- ESXiクラスタにおいてはvCenterをPrismに登録することで、基本的なVM管理タスクの一部をPrismから実行できるようにできます。

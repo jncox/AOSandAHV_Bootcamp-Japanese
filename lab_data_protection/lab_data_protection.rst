@@ -1,114 +1,111 @@
 .. _lab_data_protection:
 
 ---------------------
-Data Protection Lab
+データプロテクション
 ---------------------
 
-Overview
+概要
 ++++++++
 
-Nutanix provides the ability to perform VM/vDisk-level storage snapshots. Protection Domains (PDs) are the construct for grouping VMs and applying snapshot and replication policies.
+Nutanixは、VM/vDiskレベルのストレージスナップショットを実行する機能を提供します。保護ドメイン（PD）は、VMをグループ化し、スナップショットポリシーとレプリケーションポリシーを適用するための構成要素です。
 
-In this exercise you will use Prism to create and restore from VM snapshots, as well as create a Protection Domain for your VMs.
+この演習では、Prismを使用してVMスナップショットの作成と復元、およびVMの保護ドメインの作成を行います。
 
-Data Protection
+データプロテクション
 +++++++++++++++
 
-VM Snapshots
+VM スナップショット
 ............
 
-#. In **Prism Element > VM > Table**, select your *Initials*-**Linux_VM** VM.
+#. **Prism Element > VM > Table** と進み *Initials*-**Linux_VM** を選択します、
 
-#. If the VM is powered on, perform a **Guest Shutdown** power action.
+#. もし電源オンの場合は **Guest Shutdown** を実行します。
 
-#. Select the VM and click **Take Snapshot** from the menu below the table.
+#. VM を選択し、表の下のメニューから **Take Snapshot** をクリックします。
 
-#. Provide a name for your snapshot and click **Submit**.
+#. スナップショットの名前を入力し、**Submit** をクリックします。
 
-#. Select the **VM Snapshots** tab below the table to view the available snapshots for the selected VM.
+#. テーブルの下の **VM Snapshots** タブを選択して、選択したVMで利用可能なスナップショットを表示します。
 
    .. figure:: images/manage_workloads_04.png
 
-#. Under **Actions**, click **Details** to see all of the VM’s properties at the time of the snapshot.
+#. **Action** で **Detail** をクリックすると、スナップショット時のVMのすべてのプロパティが表示されます。
 
-   You can see the snapshot contains VM state in addition to just its data.
+   スナップショットには、データだけでなくVMの状態も含まれていることがわかります。
 
-   *Now it's time to break your VM!*
+   *スナップショットを取得しましたのでVMに変更を加えていきます*
 
-#. Click **Update** to modify your VM and remove both the CD-ROM and DISK by clicking the **X** icon for each item.
+#. **Update** をクリックして、CD-ROMとDISK各項目の **X** アイコンをクリックして削除します。
 
-#. Click **Save**.
+#. **Save** をクリックします。
 
-#. Attempt to power on the VM and launch its console window.
+#. VM の電源を入れ、そのコンソールウィンドウを起動してみてください。
 
-   Note that the VM no longer has any disks from which to boot and that the 2048 game is displayed.
+   Note VM には起動用のディスクがなくなったためOSが起動できず、2048 ゲームが表示されていることに注意してください。
 
-#. Power off the VM.
+#. VMの電源をオフにします。
 
-#. Under **VM Snapshots**, select your snapshot and click **Restore** to revert the VM to a functioning state.
+#. **VM Snapshots** で復元するスナップショットを選択し、**Restore** をクリックしてVMを戻します。
 
-   Alternatively you can click **Clone** to restore to a new VM.
+   または、**クローン** をクリックして新しいVMとしてリストアすることもできます。
 
-#. Verify that the VM boots successfully.
+#. VM が正常に起動することを確認します。
 
-As previously mentioned, Nutanix snapshots use a `redirect-on-write <https://nutanixbible.com/#anchor-book-of-acropolis-snapshots-and-clones>`_ approach that does not suffer from the performance degradation of chained snapshots found in other hypervisors.
+前述したように、Nutanixのスナップショットは `redirect-on-write <https://nutanixbible.com/#anchor-book-of-acropolis-snapshots-and-clones>`_ のアプローチを使用しており、他のハイパーバイザーに見られる連鎖型スナップショットのパフォーマンス低下に悩まされることはありません。
 
-Protection Domains
+プロテクションドメイン
 ..................
 
-#. In **Prism Element > Data Protection > Table**, click **+ Protection Domain > Async DR** to begin creating a PD.
+#. **Prism Element > Data Protection > Table** と進み **+ Protection Domain > Async DR** にてPDの作成していきます。
 
    .. note::
 
-      Synchronous replication (Metro Availability) is currently support on ESXi. It will be supported in AHV in a future release.
+      同期レプリケーション（Metro Availability）は、現在ESXiでサポートされています。将来のリリースで AHV でサポートされる予定です。
 
-#. When opening the Data Protection context of the menu a warning screen will appear. Click on the **OK** button to move forward.
+#. メニューのデータ保護コンテキストを開くと、警告画面が表示されます **OK** をクリックして進めます。
 
- .. figure:: images/data_protection_01.png
+  .. figure:: images/data_protection_01.png
 
-#. Provide a name for the PD, and click **Create**.
+#.  PDの名前を入力し **Create** をクリックします。
 
-#. Filter or scroll to select the VMs created during this lab that you want to add to the PD.
+#. フィルタ機能を使うかまたはスクロールして、このラボで作成したPDに追加する 任意のVM を探して選択します
 
-#. Click **Protect Selected Entities** and verify the VMs appear under **Protected Entities**.
+#. **Protect Selected Entities** をクリックして、VMが **Protected Entities** に表示されることを確認します。
 
-   Consistency groups allow you to group multiple VMs to be snapshot at the same time, e.g. multiple VMs belonging to the same application.
+   Consistency groups では、同じアプリケーションに属する複数のVMなど、スナップショットする複数のVMを同時にグループ化することができます。
 
-   .. note:: Nutanix snapshots can perform application consistent snapshots for supported operating systems with NGT installed. Each VM using application consistent snapshots will be part of its own consistency group.
+   .. note:: Nutanixスナップショットは、NGTがインストールされサポートされているオペレーティングシステムに対して、アプリケーション一貫性のあるスナップショットを実行することができます。アプリケーション一貫性のあるスナップショットを使用する各 VM は、独自の一貫性グループの一部となります。
 
-#. Click **Next**.
+#. **Next** をクリックします
 
-#. Click **New Schedule** to define Recovery Point Objective (RPO) and retention.
+#. **New Schedule** をクリックして Recovery Point Objective (RPO) を定義します。
 
-#. Configure your desired snapshot frequency (e.g. Repeat every 1 hour)
-
-   .. note::
-
-      AHV supports NearSync snapshots, with RPOs as low as 1 minute.
+#. スナップショット頻度を設定します（例：1時間ごとに繰り返す）
 
    .. note::
 
-      Multiple schedules can be applied to the same PD, allowing you to take and retain X number of hourly, daily, monthly snapshots.
+      AHVはNearSyncスナップショットをサポートしており、RPOは1分と低くなっています
+      同じPDに複数のスケジュールを適用することができるので、時間単位、日単位、月単位のスナップショットを 複数回取得して保持することができます。
 
-#. Configure a retention policy (e.g. Keep the last 5 snapshots)
+#. 保持ポリシーを設定する（例：直近の5つのスナップショットを保持する)
 
    .. note::
 
-      For environments with remote cluster(s) configured, setting up replication is as easy as defining how many snapshots to keep at each remote site.
+      リモートクラスタが設定されている環境では、レプリケーションの設定は、各リモートサイトに保存するスナップショットの数を定義するのと同じくらい簡単です
 
       .. figure:: images/snapshot_02.png
 
-#. Click **Create Schedule**.
+#. **Create Schedule** をクリックします
 
-#. Click **Close** to exit.
+#. **Close** をクリックして終了します
 
-Additional information can be found `here <https://nutanixbible.com/#anchor-book-of-acropolis-backup-and-disaster-recovery>`_.
+追加情報は `こちら <https://nutanixbible.com/#anchor-book-of-acropolis-backup-and-disaster-recovery>`_ で確認できます。
 
-That's it! You've successfully configured native data protection in Prism.
+これで完了です。これでPrismのネイティブデータ保護の設定が完了しました。
 
-Takeaways
+まとめ
 +++++++++
 
-- Nutanix offers data protection solutions for virtual datacenters via different strategies including one-to-one or one-to-many replication.
-- Nutanix provides data protection functions at the VM, file, and volume group level, so VMs and data remain safe in a crash-consistent environment.
-- VM-level snapshot and replication policies can be managed through Prism for any supported hypervisor.
+- Nutanixは、1対1または1対多のレプリケーションを含む様々な戦略により、仮想データセンターのためのデータ保護ソリューションを提供します。
+- NutanixはVM、ファイル、およびボリュームグループレベルでのデータ保護機能を提供し、VMとデータの安全性を維持します。
+- VMレベルのスナップショットおよびレプリケーションポリシーは、サポートされているすべてのハイパーバイザーに対して、Prismを介して管理することができます。
