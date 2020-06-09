@@ -17,7 +17,7 @@ PrismサービスはNutanixクラスタを管理するためのWeb UIを提供�
 
 クラスタIPを使用してNutanix Prism GUIにログインします。推奨ブラウザはGoogle Chorome もしくは Firefoxです。
 
-#. \https://<*NUTANIX-CLUSTER-IP*>:9440 を開きます。
+#. `https://<*NUTANIX-CLUSTER-IP*>:9440` を開きます。
 
 #. 以下の認証情報を用いてログインします。
 
@@ -44,7 +44,7 @@ PrismサービスはNutanixクラスタを管理するためのWeb UIを提供�
 
    .. figure:: images/nutanix_tech_overview_03.png
 
-　**Prism > Hardware** でクラスタのハードウェアを調べ、**Hardware** をクリックしてから **Diagram** をクリックします。
+#. **Prism > Hardware** でクラスタのハードウェアを調べ、**Hardware** をクリックしてから **Diagram** をクリックします。
 
 #. ハードウェア情報を確認してください。
 

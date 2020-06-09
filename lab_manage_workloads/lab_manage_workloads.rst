@@ -17,7 +17,7 @@
 
 VMの電源操作とコンソールアクセスについて説明します。
 
-#. **Prism Element > VM > Table** と進み、前のエクササイズ作成した仮想マシン *Initials*- **Linux_VM** を見つけます。
+#. **Prism Element > VM > Table** と進み、前のエクササイズで作成した仮想マシン *Initials*- **Linux_VM** を見つけます。
 
    .. note::
 
@@ -33,7 +33,7 @@ VMの電源操作とコンソールアクセスについて説明します。
 
    .. note::
 
-     In ESX:
+     ESXの場合:
 
      - このエクササイズの手順は、VMware vCenterインスタンスがPrismに登録されているESXiクラスタを使用しているときに、Prismから実行できます。
 
@@ -94,9 +94,9 @@ VMの電源操作とコンソールアクセスについて説明します。
 
 #. **Powered Off** を押し、電源状態をオフにして、**Update** そして **+ Set Affinity** とクリックします。
 
-#. アフィニティ設定をするために、2つの **Hosts** を選択し、 **Save** 、 **Save** とクリックします。
+#. アフィニティ設定をする対象の2つの **Hosts** を選択し、 **Save** 、 **Save** とクリックします。
 
-   .. note:: 複数のホストを選択して、ノード障害が発生した場合にVMにも移行する場所を用意します。
+   .. note:: 1つ以上のホストを選択して、ノード障害時にVMを移行させる先のホストがあるようにする。
 
 #. 仮想マシンの電源を入れ アフィニティポリシーで選択した **Hosts** 上で起動したことを確認します。
 
@@ -119,7 +119,7 @@ ESXiとは異なり、AHVではデフォルトでハイアベイラビリティ�
 
 .. note::
 
-  メモリ予約を有効にするには、: fa:`cog` **> Manage VM High Availability** で **Enable HA Reservation** を選択します
+  メモリ予約を有効にするには、:fa:`cog` **> Manage VM High Availability** で **Enable HA Reservation** を選択します。
   共有クラスタリソースのメモリはすでに制限されているため、HAメモリ予約を有効にしないでください。
 
 AHVは、**Acropolis Dynamic Scheduler** サービスを使用してVMのインテリジェントな初期配置を実行し、ワークロードのパフォーマンスを最適化するためにVMをクラスタ内の他のホストに動的に移行することができます。これは、追加の設定なしに実行可能です。
@@ -145,8 +145,8 @@ Prismの検索機能を使用すると、Prism Centralで問題を特定した�
 
 #. **Prism Central >** :fa:`search` を使って検索します
 
-- Note the result types: Entity, Alerts, and Help.
-- Click the star icon to save a search.
+- 検索結果を確認してください。：Entity, Alerts, Help
+- スターアイコンで検索を保存できます。
 
 .. note::
 
@@ -156,4 +156,4 @@ Prismの検索機能を使用すると、Prism Centralで問題を特定した�
 +++++++++
 
 - このラボでは、クラスタ内のVMを管理するためのツールとアクションのコンプリートセットをAHVがどのように提供しているかを体験しました。
-- ESXiクラスタにおいてはvCenterをPrismに登録することで、基本的なVM管理タスクの一部をPrismから実行できるようにできます。
+- (vCenter経由で)ESXiクラスタをPrismに登録することで、基本的なVM管理タスクの一部をPrismから実行できるようにできます。

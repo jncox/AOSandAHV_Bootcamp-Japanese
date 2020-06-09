@@ -1,7 +1,7 @@
 .. _lab_deploy_workloads:
 
 -------------------------
-ワークロードの構成
+ワークロードの導入
 -------------------------
 
 概要
@@ -13,7 +13,7 @@
 
   また、PrismではvCenterを登録することで、ESXiを実行しているNutanixクラスタのVM CRUD操作をネイティブにサポートしています
 
-ワークロードの作成
+ワークロードの導入
 +++++++++++++++++++
 
 次の演習では、ソースメディアからのVMの作成と既存のディスクイメージからのVMの作成について説明します。
@@ -23,11 +23,11 @@ Windows VMの作成
 
 この演習では、Windows インストール ISO イメージから Windows Server VM を作成します。
 
-AHV は **Image Service** を提供しており、インポートされたファイルのストアを構築することができます。Image serviceは、raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2のディスクフォーマットをサポートしています。
+AHV は **Image Service** を提供しており、VM作成時、ISOイメージからCD-ROMの作成や、ディスクイメージからOSシステムディスクの作成に使用するインポートファイルを格納できます。Image serviceは、raw、vhd、vhdx、vmdk、vdi、iso、およびqcow2のディスクフォーマットをサポートしています。
 
 .. note::
 
-   Prism Element の : fa:`cog` **> Image Configuration** で利用可能なイメージ確認したり、追加のイメージをアップロードしたりできます。
+   Prism Element の :fa:`cog` **> Image Configuration** で利用可能なイメージを探したり、追加のイメージをアップロードしたりできます。
 
 VM にハイパフォーマンスI/Oを提供するためにはAHV はゲストに準仮想化ドライバをインストールする必要があります（VMware Tools に似ています）。特に Windows ゲストの場合、Windows インストーラで VM のディスクにアクセスできるようにするためにはインストール中にこれらのドライバを読み込む必要があります。
 
@@ -44,10 +44,10 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
    - **vCPU(s)** - 2
    - **Number of Cores per vCPU** - 1
    - **Memory** - 4 GiB
-   - Select :fa:`pencil` next to CDROM
+   - CDROMの隣の :fa:`pencil` を選択してください
        - **Operation** - Clone from Image Service
        - **Image** - Windows2016.ISO
-       - Select **Update**
+       - **Update** を選択してください
 
        *これは、ブート/インストール用のImage ServiceからWindows Server ISOをマウントします。*
 
@@ -56,7 +56,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
        - **Operation** - Allocate on Storage Container
        - **Storage Container** - Default Container
        - **Size (GiB)** - 30 GiB
-       - Select **Add**
+       - **Add** を選択してください
 
        *選択したStorage Containerに30GiBのvDiskを作成します*
 
@@ -64,13 +64,13 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
        - **Type** - CDROM
        - **Operation** - Clone from Image Service
        - **Image** - Nutanix VirtIO ISO
-       - Select **Add**
+       - **Add** を選択してください
        - **Boot Configuration**
-       - Leave the default selected **Legacy Boot**
+       - デフォルトで選択された **Legacy Boot** はそのままにしてください
 
    - **Add New NIC** をクリックします。
        - **VLAN Name** - Primary
-       - Select **Add**
+       - **Add** を選択してください
 
        *選択した仮想ネットワーク上のVMに1つの仮想NICを追加します*
 
@@ -86,14 +86,16 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
    .. figure:: images/vm_power_on.png
 
-#. VM を選択し、**Actions** ドロップダウンメニューから **Launch Console** をクリックして、HTML5 コンソールにアクセスします。
+#. VM を選択し、**Actions** ドロップダウンメニューから **Launch Console** をクリックして、VMを操作するためのHTML5 コンソールにアクセスします。
 
-#. Windowsのインストールを開始するまえに、基本的なインストール方法を確認します。
+#. Windowsのインストール場所の画面にいくまで、標準のインストールの質問を進めてください。
 
    .. note::
      選択肢が表示されたら、**Datacenter with GUI** と **Custom** インストールを選択してください。
 
 #. **Load Driver** をクリックし、Nutanix VirtIO がマウントされているドライブに移動します。
+
+#. CDをブラウズし、インストールするWindows OSに対応するディレクトリを選択します。
 
    .. figure:: images/deploy_workloads_05.png
 
@@ -113,8 +115,8 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
 #. そのディスクを選択して、通常のインストールプロセスを行います。
 
-#. インストールが完了した後、必要に応じて 仮想ドライブを削除することができます。
-  仮想マシンの電源オフにした後に、**Update** をクリックし、マウントしているISOをアンマウント後、仮想ドライブを削除する流れとなります。
+#. インストールが完了した後、必要に応じて、Windows installとVirtIOのISOをWindows内からアンマウントできます。
+   テーブル内のVMを選択してVMからCD-ROMを削除できます。具体的には、アクションリンクのリストから **Update** をクリックし、CD-ROMディスクを削除します(VMは電源OFFが必須です)。
 
    .. note::
 
@@ -124,7 +126,7 @@ Nutanixはこれらのドライバを検証し、http://portal.nutanix.com を�
 
 #. OSのインストール後、PrismでVMを選択し、**Manage Guest Tools > Enable Nutanix Guest Tools > Mount Guest Tools** の順にクリックし、**Submit** をクリックすることで、**Nutanix Guest Tools (NGT)** のインストール準備をします。
 
-  これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、 **Self-Service File Restore (SSR)** および **Application Consistent (VSS) snapshots** をサポートするサービスが含まれています
+   これは仮想 CD-ROM ドライブを使用して NGT インストール ISO を VM にマウントします。NGTには、過去にインストールされたVirtIOドライバのほか、 **Self-Service File Restore (SSR)** および **Application Consistent (VSS) snapshots** をサポートするサービスが含まれています
 
     .. figure:: images/deploy_workloads_nutanix_guest_tools.png
 
@@ -151,15 +153,15 @@ Linux VMの作成
       - **Type** - DISK
       - **Operation** - Clone from Image Service
       - **Image** - CentOS7.qcow2
-      - Select **Add**
+      - **Add** を選択してください。
       - **Boot Configuration**
-      - Leave the default selected **Legacy Boot**
+      - デフォルトで選択された **Legacy Boot** はそのままにしてください。
 
     *既存のCentOSディスクイメージのシン・クローンを作成します。*
 
    - **Add New NIC** をクリックします。
       - **VLAN Name** - Primary
-      - Select **Add**
+      - **Add** を選択してください。
 
    .. figure:: images/deploy_workloads_03.png
 
