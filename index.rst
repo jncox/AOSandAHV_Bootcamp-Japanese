@@ -45,11 +45,12 @@
 Getting Started
 ---------------
 
-Nutanix AOS and AHV Bootcamp へようこそ！このワークブックには、Nutanix Coreテクノロジーと多くの一般的な管理タスクを紹介する、インストラクター主導のセッションが含まれています。
+Nutanix AOS and AHV Bootcamp へようこそ！このワークブックには、Nutanixの根幹を担うHCIのテクノロジーを学び、それを利用して一般的な管理タスクがどのように実施されるのかを以下の流れで体験頂きます。
 
-Prism Elementを探索し、その機能とナビゲーションに慣れます。Prismを使用して、ストレージやネットワークなどの基本的なクラスター管理タスクを実行します。また、PrismおよびAHVを使用した基本的なVMの導入および管理タスクについても説明します。最後に、スナップショットやレプリケーションを含むVMデータ保護について説明します。インストラクターが演習を説明し、あなたが持つかもしれない追加の質問に答えます。
-
-ブートキャンプの最後に、参加者は、Nutanix Enterprise Cloudスタックを構成するコアの概念とテクノロジーを理解し、ホスト型またはオンサイトの概念実証（POC）の実施に備える準備を整える必要があります。
+１．Prism Elementを探索し、その機能とナビゲーションを体験します。
+２．Prismを使用して、ストレージやネットワークなどの基本的なクラスター管理タスクを実行します。
+３．PrismおよびAHVを使用した基本的なVMの導入および管理タスクについて体験します。
+４．スナップショットやレプリケーションを含むVMデータ保護について体験します。
 
 アジェンダ
 +++++++++
@@ -58,13 +59,6 @@ Prism Elementを探索し、その機能とナビゲーションに慣れます�
 - Nutanixプレゼンテーション
 - Nutanix設定ラボ
 - ワークロードの導入・管理ラボ
-
-
-はじめに
-+++++++++++++
-
-- お名前
-- Nutanixの知識
 
 初期セットアップ
 +++++++++++++
@@ -75,9 +69,9 @@ Prism Elementを探索し、その機能とナビゲーションに慣れます�
 環境の詳細
 +++++++++++++++++++
 
-Nutanixワークショップは、Nutanix Hosted POC環境で実行することを目的としています。演習を完了するために必要なすべての必要なイメージ、ネットワーク、VMがクラスターにプロビジョニングされます。
+Nutanixワークショップは、Nutanix Hosted POC環境を利用します。演習を完了するために必要なイメージ、ネットワーク、VMは事前に構築されています。
 
-ネットワーキング
+ネットワーク
 ..........
 
 Hosted POCクラスターは、標準の命名規則に従います。
@@ -86,13 +80,13 @@ Hosted POCクラスターは、標準の命名規則に従います。
 - **サブネット** - 10.**21**.\ *XYZ*\ .0
 - **クラスタIP** - 10.**21**.\ *XYZ*\ .37
 
-例えば:
+例:
 
 - **クラスター名** - POC055
 - **サブネット** - 10.21.55.0
 - **クラスターIP** - 10.21.55.37
 
-ワークショップ全体を通して、XYZをサブネットの正しいオクテットに置き換える必要がある複数のインスタンスがあります。次に例を示します。
+環境内には、* XYZ *をサブネットの正しいオクテットに置き換える必要があるVMが存在しています。たとえば：
 
 .. list-table::
    :widths: 25 75
@@ -131,7 +125,7 @@ Hosted POCクラスターは、標準の命名規則に従います。
 
 .. note::
 
-  <クラスタ・パスワード>は各クラスタに固有であり、ワークショップのリーダーによって提供されます。
+  <クラスタ・パスワード>は各クラスタに固有であり、講師によって提供されます。
 
 .. list-table::
    :widths: 25 35 40
@@ -187,67 +181,36 @@ Hosted POCクラスターは、標準の命名規則に従います。
 アクセス手順
 +++++++++++++++++++
 
-Nutanix Hosted POC環境には、さまざまな方法でアクセスできます。
+Nutanix Hosted POC 環境には以下の方法で接続できます。:
 
-ラボアクセスのユーザー認証情報
+ユーザ名、パスワード
 ...........................
 
-PHX Based Clusters:
-**ユーザ名:** PHX-POCxxx-User01 (up to PHX-POCxxx-User20), **パスワード:** *<Provided by Instructor>*
+PHX クラスタ:
+**Username:** PHX-POCxxx-User01 〜 PHX-POCxxx-User20, **Password:** *<講師から提供>*
 
-RTP Based Clusters:
-**ユーザ名:** RTP-POCxxx-User01 (up to RTP-POCxxx-User20), **パスワード:** *<Provided by Instructor>*
+RTP クラスタ:
+**Username:** RTP-POCxxx-User01 〜 RTP-POCxxx-User20, **Password:** *<講師から提供>*
 
 Frame VDI
 .........
 
 ログイン: https://frame.nutanix.com/x/labs
 
-**Nutanix社員** - **NUTANIXDC**の認証情報を使用
-**非Nutanix社員** - **Lab Access User**の認証情報を使用
+上記 **Username**, **Password** を入力
 
 Parallels VDI
 .................
 
-PHX Based Clusters ログイン: https://xld-uswest1.nutanix.com
+PHX クラスタ: https://xld-uswest1.nutanix.com
 
-RTP Based Clusters ログイン: https://xld-useast1.nutanix.com
+RTP クラスタ: https://xld-useast1.nutanix.com
 
-**Nutanix Employees** - **NUTANIXDC**の認証情報を使用
-**Non-Employees** - **Lab Access User**の認証情報を使用
+上記 **Username**, **Password** を入力
 
-Pulse Secure VPN
-..........................
-
-クライアントをダウンロードします:
-
-PHX Based Clusters ログイン: https://xld-uswest1.nutanix.com
-
-RTP Based Clusters ログイン: https://xld-useast1.nutanix.com
-
-**Nutanix Employees** - **NUTANIXDC**の認証情報を使用
-**Non-Employees** - **Lab Access User**の認証情報を使用
-
-クライアントをインストールします。
-
-Pulse Secure Clientで、接続を**追加**します。
-
-For PHX:
-
-- **Type** - ポリシー保護（UAC）または接続サーバー
-- **Name** - X-Labs - PHX
-- **Server URL** - xlv-uswest1.nutanix.com
-
-For RTP:
-
-- **Type** - ポリシー保護（UAC）または接続サーバー
-- **Name** - X-Labs - RTP
-- **Server URL** - xlv-useast1.nutanix.com
-
-
-Nutanixバージョン情報
+Nutanix Version Info
 ++++++++++++++++++++
 
-- **AHVバージョン** - AHV 20170830.337
-- **AOSバージョン** - 5.11.2.3
-- **PCバージョン** - 5.11.2.1
+- **AHV Version** - AHV 20170830.337
+- **AOS Version** - 5.11.2.3
+- **PC Version** - 5.11.2.1
