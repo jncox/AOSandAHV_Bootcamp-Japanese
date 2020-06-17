@@ -1,7 +1,7 @@
 .. _lab_nutanix_technology_overview:
 
 ---------------------------------
-Nutanix Tech lab
+Prism操作の体験
 ---------------------------------
 
 概要
