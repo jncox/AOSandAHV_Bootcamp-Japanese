@@ -17,7 +17,7 @@ Windows Tools VM
 - pgAdmin
 - Chocolatey Package Manager
 
- **Lab Setup** の一環として指示された場合は、割り当てられたクラスターにこのVMをデプロイします。
+**Lab Setup** の一環として指示された場合は、割り当てられたクラスターにこのVMをデプロイします。
 
 .. raw:: html
 
@@ -26,7 +26,7 @@ Windows Tools VM
 Tools VMのデプロイ
 ++++++++++++++++++
 
- **Prism Central** > :fa:`bars` **> Virtual Infrastructure > VMs** と進み、 **Create VM** をクリックする。
+**Prism Central** > :fa:`bars` **> Virtual Infrastructure > VMs** と進み、 **Create VM** をクリックする。
 
 以下を入力する。:
 
