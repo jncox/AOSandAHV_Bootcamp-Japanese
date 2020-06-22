@@ -1,111 +1,116 @@
 .. _lab_network_configuration:
 
 ------------------------------
-Networking Configuration Lab
+ネットワーク構成
 ------------------------------
 
-Overview
+概要
 ++++++++
 
-Learn how to set up a network in the cluster using Prism. The networks you create in the steps below provide VMs with connectivity by assigning the appropriate networks for the VMs’ respective NICs.
+Prismを使用してクラスター内にネットワークを設定する方法を学びます。 以下の手順で作成するネットワークは、VMのそれぞれのNICに適切なネットワークを割り当てることにより、VMに接続を提供します。
 
-AHV Networking Background
+AHVネットワーキングの背景
 +++++++++++++++++++++++++
 
-AHV leverages Open vSwitch (OVS) for all VM networking. OVS is an open source software switch implemented in the Linux kernel and designed to work in a multiserver virtualization environment. Each AHV server maintains an OVS instance, and all OVS instances combine to form a single logical switch.
+AHV は、すべての VM ネットワーキングに Open vSwitch (OVS) を活用しています。
+OVSはLinuxカーネルに実装されたオープンソースのソフトウェアスイッチで、マルチサーバ仮想化環境で動作するように設計されています。
+各 AHV サーバは OVS インスタンスを維持し、すべての OVS インスタンスを組み合わせて単一の論理スイッチを形成します。
 
-Each node is typically uplinked to a physical switch port trunked/tagged to multiple VLANs, which will be exposed as virtual networks.
+各ノードは、通常、複数のVLANにトランク/タグ付けされた物理スイッチポートにアップリンクされ、仮想ネットワークとして利用されます。
 
-VM networking is configured through Prism (or optionally CLI/REST), making network management in AHV very simple. In the following exercise you will walk through virtual network creation in AHV.
+VMネットワークはPrism（またはオプションでCLI/REST）を介して設定されるため、AHVでのネットワーク管理は非常にシンプルになります。以下のエクササイズでは、AHVでの仮想ネットワークの作成について説明します。
 
-With AHV, you can also setup a DHCP server to automatically provide IP addresses for VMs using the IP address management (IPAM) service. Meaning you don't have to setup a separate DHCP server for the network. Which makes network management easier.
+AHVでは、IPアドレス管理（IPAM）サービスを使用してVMにIPアドレスを自動的に提供するために、DHCPサーバを設定することもできます。つまり、ネットワーク用に別途DHCPサーバを設定する必要はありません。これにより、ネットワーク管理が容易になります。
 
-Additional details about AHV networking can be found `here <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_.
+AHVネットワークの詳細については `以下 <https://nutanixbible.com/#anchor-book-of-ahv-networking>`_ を参照ください。
 
-Virtual Networks
+仮想ネットワーク
 ................
 
-- Similar to a VMware “distributed portgroup”
-- Each virtual NIC belongs to exactly one virtual network
-- Each virtual network is a common point of configuration for a group of virtual NICs
-- Physical switch port must be configured to trunk VLAN
+- VMwareの「分散ポートグループ」に似ています
+- 各仮想NICは1つの仮想ネットワークに属しています
+- 各仮想ネットワークは、仮想NICのグループの共通の構成ポイントです
+- 物理スイッチポートはトランクVLANに設定する必要があります
 
 .. figure:: images/network_config_01.png
 .. figure:: images/network_config_001.png
 
-Virtual NICs of VMs
+仮想マシンの仮想NIC
 ...................
 
-- Each vNIC of a VM belongs to exactly one virtual network
-- For IPAM-enabled networks, vNICs get life-long static IP assignments
-- User may configure pools to automatically allocate IPs, or specify the IP manually
+- VMの各vNICは1つの仮想ネットワークに属します
+- IPAM対応ネットワークの場合、vNICは生涯にわたる静的IP割り当てを取得します
+- ユーザーはプールを構成してIPを自動的に割り当てるか、IPを手動で指定できます
 
 .. figure:: images/network_config_02.png
 
-IP Address Management (IPAM)
+IPアドレス管理 (IPAM)
 ............................
 
-- Integrated DHCP Server
-- AHV intercepts DHCP requests from guests on IPAM networks, and injects responses
-- Virtualization admin manages a range of IP addresses
-- Supports arbitrary DHCP options, with UI support for DNS and TFTP configuration
+- 統合DHCPサーバー
+- AHVはIPAMネットワーク上のゲストからのDHCP要求を傍受し、応答を注入します
+- 仮想化管理者がIPアドレスの範囲を管理します
+- 任意のDHCPオプションをサポートし、DNSおよびTFTP構成のUIをサポートします
 
 .. figure:: images/network_config_03.png
 
-Configure Network
+ネットワーク構成
 +++++++++++++++++
 
 .. note::
 
-   In the following exercise you will create networks using invalid VLANs, meaning no VM traffic will be transmitted outside of an individual host. This is expected as the exercise is for demonstration/education purposes only.
+   次の演習では、無効な VLAN を使用してネットワークを作成し、VM トラフィックが個々のホストの外部に送信されないようにします。
+   この演習は、デモ/トレーニングの目的に限ります。　
 
-Setup User VM Network
+ユーザー仮想マシン向けネットワークのセットアップ
 .....................
 
-Connect to Prism Element and create a network for user VM interfaces. Use any VLAN other than 0, and do not enable IP address management.
+Prism Elementに接続し、ユーザーVMインタフェース用のネットワークを作成します。VLANは0以外の任意のものを使用し、IPアドレス管理は有効にしないでください。
 
-#. In **Prism Element > VM**, click **VMs**, then click **Network Config**.
+#. **Prism Element > VM** と進み、 **VMs** の **Network Config** をクリックします。
 
-#. Select **VM Networks**, then click **+ Create Network**.
+#. **VM Networks** を選択し、 **+ Create Network** をクリックします。
 
-#. Fill out the following fields and click **Save**:
+#. 次のフィールドに入力し、 **Save** をクリックします。
 
    - **Name** - *Initials*-Network
-   - **VLAN ID** - A value (< 4096) other than your **Primary** or **Secondary** network VLANs
-   - Do not select **Enable IP Address Management**
+   - **VLAN ID** - **Primary** と **Secondary** ネットワークで使用していないIDかつ、4096以下のVLAN IDを指定します。
+   - **Enable IP Address Management** は選択しないでください。
 
-   The final result should look like the image below.
+   最終的には以下の画像の様になります。
 
    .. figure:: images/network_config_04.png
 
-   The configured virtual network will now be available across all nodes within the cluster. Virtual networks in AHV behave like Distributed Virtual Switches in ESXi, meaning you do not need to configure the same settings on each individual host within the cluster. When creating VMs in IPAM managed networks, the IP can optionally be manually specified during vNIC creation.
+   設定された仮想ネットワークは、クラスタ内のすべてのノードで利用できるようになります。AHVの仮想ネットワークは、ESXiの分散仮想スイッチのように動作するため、クラスタ内の個々のホストで同じ設定をする必要はありません。IPAM 管理ネットワークで VM を作成する場合、vNIC作成時に、IPをオプションで手動で指定できます。
 
-Setup User VM Network with IPAM
+IPAMを使ったユーザー仮想マシン向けネットワークのセットアップ
 ...............................
 
-Create another network, but this time enable IPAM.
+IPAMを有効にした、別のネットワークを作成します。
 
-#. Fill out the following fields and click **Save**:
+#. 次のフィールドに入力し、 **Save** をクリックします。
 
    - **Name** - *Initials*-Network_IPAM
-   - **VLAN ID** - A value (< 4096) other than your **Primary** or **Secondary** network VLANs
-   - Select **Enable IP Address Management**
+   - **VLAN ID** - **Primary** と **Secondary** ネットワークで使用していないIDかつ、4096以下のVLAN IDを指定します。
+   - **Enable IP Address Management** を選択してください。
    - **Network IP Address / Prefix Length** - 10.0.0.0/24
    - **Gateway** - 10.0.0.1
-   - Do not select **Configure Domain Settings**
+   - **Configure Domain Settings** を選択しないでください。
    - **Create Pool** - 10.0.0.100-10.0.0.150
-   - Do not select **Override DHCP Server**
+   - **Override DHCP Server** を選択しないでください。
 
    .. figure:: images/network_config_03.png
 
-   .. note::
+.. note::
 
-     It is possible to create multiple pool ranges for a network.
+   １つのネットワークに対して複数のプール範囲を作成することが可能です。
 
-   The configured virtual network will now be available across all nodes within the cluster. VMs with vNICs on this network will receive a DHCP address from the range specified. This IP assignment lasts for the life of the VM, avoiding the need to depend on DHCP reservations or static IPs for many workloads.
+これで、構成された仮想ネットワークがクラスタ内のすべてのノードで利用できるようになります。
+このネットワーク上のvNICを持つVMは、指定された範囲のDHCPアドレスを受信します。
+このIP割り当てはVMのが削除されるまで続くため、多くのワークロードでDHCP予約やスタティックIPに依存する必要はありません。
 
-Takeaways
+まとめ
 +++++++++
 
-- It's very easy to setup a network in the cluster in order to establish VM connectivity.
-- IPAM is very simple to setup within a network and it can greatly simplify IP management within the cluster.
+- VM接続を確立するためにクラスタ内にネットワークを設定するのは非常に簡単です
+- IPAMはネットワーク内でのセットアップが非常に簡単で、クラスタ内のIP管理を大幅に簡素化することができます
